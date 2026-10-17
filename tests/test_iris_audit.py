@@ -14,6 +14,11 @@ from iris_audit import audit_iris_control
 
 @pytest.fixture(scope="module")
 def audit() -> dict[str, Any]:
+    data_file = (
+        Path(__file__).resolve().parents[1] / "data/raw/06_iris_control/data.csv"
+    )
+    if not data_file.is_file():
+        pytest.skip("Fetch the real datasets with src/fetch_data.py first.")
     return audit_iris_control()
 
 
