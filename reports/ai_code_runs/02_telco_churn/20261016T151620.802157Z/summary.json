@@ -1,0 +1,16 @@
+{
+  "case": "02_telco_churn",
+  "original": {
+    "attempt": 1,
+    "exit_code": 1,
+    "timed_out": false,
+    "timeout_seconds": 300,
+    "workspace": "reports/ai_code_runs/02_telco_churn/20261016T151620.802157Z/attempt-1"
+  },
+  "repair": null,
+  "finding": {
+    "type": "execution_failure",
+    "attempt": 1,
+    "message": "Original pasted code did not complete successfully; see attempt-1/stderr.txt."
+  }
+}

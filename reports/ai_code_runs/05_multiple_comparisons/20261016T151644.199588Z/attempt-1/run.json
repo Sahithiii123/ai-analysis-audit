@@ -1,0 +1,12 @@
+{
+  "case": "05_multiple_comparisons",
+  "attempt": 1,
+  "started_at_utc": "2026-10-16T15:16:44+00:00",
+  "timeout_seconds": 300,
+  "network": "none",
+  "sandbox_image": "ai-analysis-audit-sandbox:latest",
+  "exit_code": 0,
+  "timed_out": false,
+  "workspace": "reports/ai_code_runs/05_multiple_comparisons/20261016T151644.199588Z/attempt-1",
+  "finished_at_utc": "2026-10-16T15:16:56+00:00"
+}

@@ -1,0 +1,94 @@
+import numpy as np
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
+from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import HistGradientBoostingClassifier
+from sklearn.dummy import DummyClassifier
+from sklearn.metrics import (roc_auc_score, average_precision_score,
+                             precision_recall_curve, classification_report,
+                             confusion_matrix)
+
+# ---------- load + clean ----------
+df = pd.read_csv("data/raw/01_bank_marketing/data.csv")
+df["y"] = (df["y"].astype(str).str.strip().str.lower() == "yes").astype(int)
+
+cat_cols = ["job", "marital", "education", "default", "housing", "loan",
+            "contact", "month", "poutcome"]
+for c in cat_cols:
+    df[c] = df[c].fillna("unknown").astype(str)
+
+df["prev_contacted"] = (df["pdays"] != -1).astype(int)
+df["pdays_clean"] = df["pdays"].where(df["pdays"] != -1, 0)
+
+# duration is leakage (only known after the call) -> excluded
+num_cols = ["age", "balance", "day_of_week", "campaign",
+            "previous", "pdays_clean", "prev_contacted"]
+X = df[cat_cols + num_cols]
+y = df["y"]
+
+print(f"Rows: {len(df)} | Subscribe rate: {y.mean():.1%}")
+
+# ---------- split ----------
+X_tmp, X_test, y_tmp, y_test = train_test_split(
+    X, y, test_size=0.20, stratify=y, random_state=42)
+X_train, X_val, y_train, y_val = train_test_split(
+    X_tmp, y_tmp, test_size=0.25, stratify=y_tmp, random_state=42)  # 60/20/20
+
+# ---------- models ----------
+def make_pre(scale):
+    return ColumnTransformer([
+        ("cat", OneHotEncoder(handle_unknown="ignore", sparse_output=False), cat_cols),
+        ("num", StandardScaler() if scale else "passthrough", num_cols),
+    ])
+
+models = {
+    "baseline (always 'no')": Pipeline([
+        ("pre", make_pre(False)),
+        ("m", DummyClassifier(strategy="prior"))]),
+    "logistic regression": Pipeline([
+        ("pre", make_pre(True)),
+        ("m", LogisticRegression(max_iter=2000, class_weight="balanced"))]),
+    "gradient boosting": Pipeline([
+        ("pre", make_pre(False)),
+        ("m", HistGradientBoostingClassifier(
+            learning_rate=0.05, max_iter=300, max_leaf_nodes=15,
+            l2_regularization=1.0, random_state=42))]),
+}
+
+results = {}
+for name, pipe in models.items():
+    pipe.fit(X_train, y_train)
+    p = pipe.predict_proba(X_val)[:, 1]
+    results[name] = (roc_auc_score(y_val, p), average_precision_score(y_val, p))
+    print(f"{name:26s} val ROC-AUC={results[name][0]:.3f}  PR-AUC={results[name][1]:.3f}")
+
+best = max(results, key=lambda k: results[k][1])
+print("\nBest on validation PR-AUC:", best)
+best_pipe = models[best]
+
+# ---------- threshold chosen on validation ----------
+p_val = best_pipe.predict_proba(X_val)[:, 1]
+prec, rec, thr = precision_recall_curve(y_val, p_val)
+f1 = 2 * prec[:-1] * rec[:-1] / (prec[:-1] + rec[:-1] + 1e-9)
+threshold = thr[np.argmax(f1)]
+print(f"Chosen threshold (best val F1): {threshold:.3f}")
+
+# ---------- final test score (used once) ----------
+p_test = best_pipe.predict_proba(X_test)[:, 1]
+pred = (p_test >= threshold).astype(int)
+
+print("\n=== TEST RESULTS ===")
+print(f"ROC-AUC: {roc_auc_score(y_test, p_test):.3f}")
+print(f"PR-AUC : {average_precision_score(y_test, p_test):.3f}  "
+      f"(random guess ~ {y_test.mean():.3f})")
+print("Confusion matrix [[TN, FP], [FN, TP]]:\n", confusion_matrix(y_test, pred))
+print(classification_report(y_test, pred, target_names=["no", "yes"], digits=3))
+
+# how good is it at ranking? top 20% of customers by score
+k = int(0.2 * len(y_test))
+top = np.argsort(-p_test)[:k]
+print(f"Top 20% scored customers: {y_test.iloc[top].mean():.1%} subscribe "
+      f"vs {y_test.mean():.1%} overall (lift {y_test.iloc[top].mean()/y_test.mean():.1f}x)")

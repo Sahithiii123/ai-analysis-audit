@@ -1,0 +1,40 @@
+rows: 48842 | share >50K: 0.239
+       feature        type         p  effect                                                                  note      p_bh    p_bonf
+  relationship categorical         0   0.454                        highest: Wife (0.47); lowest: Own-child (0.01)         0         0
+marital-status categorical         0   0.448      highest: Married-civ-spouse (0.45); lowest: Never-married (0.05)         0         0
+ education-num     numeric         0   0.432                                             AUC=0.716, median 12 vs 9         0         0
+     education categorical         0   0.366                 highest: Prof-school (0.74); lowest: Preschool (0.01)         0         0
+           age     numeric         0   0.365                                            AUC=0.682, median 43 vs 34         0         0
+    occupation categorical         0    0.35       highest: Exec-managerial (0.48); lowest: Priv-house-serv (0.01)         0         0
+hours-per-week     numeric         0   0.344                                            AUC=0.672, median 40 vs 40         0         0
+           sex categorical         0   0.215                           highest: Male (0.30); lowest: Female (0.11)         0         0
+     workclass categorical         0   0.182             highest: Self-emp-inc (0.55); lowest: Never-worked (0.00)         0         0
+  capital-gain     numeric         0   0.179                                              AUC=0.590, median 0 vs 0         0         0
+          race categorical 4.28e-104  0.0999 highest: Asian-Pac-Islander (0.27); lowest: Amer-Indian-Eskimo (0.12)    5e-104    6e-103
+native-country categorical  1.04e-70  0.0962             highest: France (0.42); lowest: Holand-Netherlands (0.00)  1.12e-70  1.45e-69
+  capital-loss     numeric 5.18e-205  0.0684                                              AUC=0.534, median 0 vs 0 6.59e-205 7.25e-204
+        fnlwgt     numeric      0.19 0.00803                                    AUC=0.496, median 176729 vs 178811      0.19         1
+
+Holdout AUC: 0.899
+
+Top negative (adjusted, log-odds):
+ c__native-country_Columbia      -1.61
+c__occupation_Priv-house-serv   -1.41
+c__native-country_Laos          -1.02
+c__native-country_South         -0.98
+c__workclass_Self-emp-not-inc   -0.94
+c__occupation_Farming-fishing   -0.93
+c__workclass_Without-pay        -0.91
+c__occupation_Other-service     -0.90
+dtype: float64
+
+Top positive (adjusted, log-odds):
+ n__education-num                        0.73
+c__occupation_Exec-managerial           0.73
+c__sex_Male                             0.74
+c__native-country_Portugal              0.94
+c__relationship_Wife                    1.14
+c__native-country_Ireland               1.25
+c__marital-status_Married-AF-spouse     1.46
+c__marital-status_Married-civ-spouse    2.02
+dtype: float64

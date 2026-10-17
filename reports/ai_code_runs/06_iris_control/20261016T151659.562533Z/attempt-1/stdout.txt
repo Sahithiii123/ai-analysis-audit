@@ -1,0 +1,76 @@
+Shape: (150, 5)
+Missing values:
+ sepal length    0
+sepal width     0
+petal length    0
+petal width     0
+class           0
+dtype: int64 
+
+Duplicate rows: 3
+Rows per species:
+ class
+Iris-setosa        50
+Iris-versicolor    50
+Iris-virginica     50
+Name: count, dtype: int64 
+
+Non-positive values: 0 
+
+        species      measure  n  mean    sd  median  min  max  t_CI_low  t_CI_high  boot_CI_low  boot_CI_high
+    Iris-setosa sepal length 50 5.006 0.352    5.00  4.3  5.8     4.906      5.106        4.908         5.100
+    Iris-setosa  sepal width 50 3.418 0.381    3.40  2.3  4.4     3.310      3.526        3.314         3.522
+    Iris-setosa petal length 50 1.464 0.174    1.50  1.0  1.9     1.415      1.513        1.416         1.512
+    Iris-setosa  petal width 50 0.244 0.107    0.20  0.1  0.6     0.214      0.274        0.216         0.274
+Iris-versicolor sepal length 50 5.936 0.516    5.90  4.9  7.0     5.789      6.083        5.798         6.078
+Iris-versicolor  sepal width 50 2.770 0.314    2.80  2.0  3.4     2.681      2.859        2.680         2.854
+Iris-versicolor petal length 50 4.260 0.470    4.35  3.0  5.1     4.126      4.394        4.124         4.386
+Iris-versicolor  petal width 50 1.326 0.198    1.30  1.0  1.8     1.270      1.382        1.274         1.382
+ Iris-virginica sepal length 50 6.588 0.636    6.50  4.9  7.9     6.407      6.769        6.416         6.766
+ Iris-virginica  sepal width 50 2.974 0.322    3.00  2.2  3.8     2.882      3.066        2.886         3.064
+ Iris-virginica petal length 50 5.552 0.552    5.55  4.5  6.9     5.395      5.709        5.402         5.706
+ Iris-virginica  petal width 50 2.026 0.275    2.00  1.4  2.5     1.948      2.104        1.950         2.102 
+
+     measure                             pair  mean_diff  boot_CI_low  boot_CI_high  cohens_d
+sepal length    Iris-setosa - Iris-versicolor     -0.930       -1.098        -0.758    -2.104
+sepal length     Iris-setosa - Iris-virginica     -1.582       -1.788        -1.382    -3.077
+sepal length Iris-versicolor - Iris-virginica     -0.652       -0.876        -0.428    -1.126
+ sepal width    Iris-setosa - Iris-versicolor      0.648        0.516         0.780     1.857
+ sepal width     Iris-setosa - Iris-virginica      0.444        0.306         0.578     1.258
+ sepal width Iris-versicolor - Iris-virginica     -0.204       -0.328        -0.078    -0.641
+petal length    Iris-setosa - Iris-versicolor     -2.796       -2.930        -2.654    -7.894
+petal length     Iris-setosa - Iris-virginica     -4.088       -4.248        -3.936    -9.993
+petal length Iris-versicolor - Iris-virginica     -1.292       -1.490        -1.096    -2.521
+ petal width    Iris-setosa - Iris-versicolor     -1.082       -1.144        -1.020    -6.802
+ petal width     Iris-setosa - Iris-virginica     -1.782       -1.860        -1.702    -8.548
+ petal width Iris-versicolor - Iris-virginica     -0.700       -0.790        -0.608    -2.925 
+
+sepal length ranges:
+                 min  max
+class                    
+Iris-setosa      4.3  5.8
+Iris-versicolor  4.9  7.0
+Iris-virginica   4.9  7.9
+
+sepal width ranges:
+                 min  max
+class                    
+Iris-setosa      2.3  4.4
+Iris-versicolor  2.0  3.4
+Iris-virginica   2.2  3.8
+
+petal length ranges:
+                 min  max
+class                    
+Iris-setosa      1.0  1.9
+Iris-versicolor  3.0  5.1
+Iris-virginica   4.5  6.9
+
+petal width ranges:
+                 min  max
+class                    
+Iris-setosa      0.1  0.6
+Iris-versicolor  1.0  1.8
+Iris-virginica   1.4  2.5
+
+Saved iris_boxplots.png

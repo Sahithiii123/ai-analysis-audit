@@ -1,0 +1,12 @@
+{
+  "case": "04_simpsons_paradox",
+  "original": {
+    "attempt": 1,
+    "exit_code": 0,
+    "timed_out": false,
+    "timeout_seconds": 300,
+    "workspace": "reports/ai_code_runs/04_simpsons_paradox/20261016T151634.852194Z/attempt-1"
+  },
+  "repair": null,
+  "finding": null
+}

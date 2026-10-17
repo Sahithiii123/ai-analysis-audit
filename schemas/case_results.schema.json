@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/ai-analysis-audit/case-results.schema.json",
+  "title": "AI Analysis Audit Case Results",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "case_id",
+    "question",
+    "reference_status",
+    "reference_results",
+    "source_sha256",
+    "ai_audit_status",
+    "ai_audit_verdict",
+    "audit_findings",
+    "corrected_results"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "case_id": {
+      "enum": [
+        "01_bank_marketing",
+        "02_telco_churn",
+        "03_olist_delivery_reviews",
+        "04_simpsons_paradox",
+        "05_multiple_comparisons",
+        "06_iris_control"
+      ]
+    },
+    "question": {"type": "string", "minLength": 1},
+    "reference_status": {"enum": ["complete", "awaiting_raw_data"]},
+    "reference_results": {"type": ["object", "null"]},
+    "source_sha256": {
+      "type": "object",
+      "additionalProperties": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+    },
+    "ai_audit_status": {"enum": ["not_started", "awaiting_model_output", "complete"]},
+    "ai_audit_verdict": {
+      "enum": ["Reliable", "Partly reliable", "Unreliable", null]
+    },
+    "audit_findings": {"type": ["array", "null"]},
+    "corrected_results": {"type": ["object", "null"]},
+    "generated_at_utc": {"type": "string", "format": "date-time"}
+  }
+}

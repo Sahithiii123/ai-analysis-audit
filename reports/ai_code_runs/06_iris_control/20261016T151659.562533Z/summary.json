@@ -1,0 +1,12 @@
+{
+  "case": "06_iris_control",
+  "original": {
+    "attempt": 1,
+    "exit_code": 0,
+    "timed_out": false,
+    "timeout_seconds": 300,
+    "workspace": "reports/ai_code_runs/06_iris_control/20261016T151659.562533Z/attempt-1"
+  },
+  "repair": null,
+  "finding": null
+}

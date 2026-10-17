@@ -1,0 +1,24 @@
+Rows: 45211 | Subscribe rate: 11.7%
+baseline (always 'no')     val ROC-AUC=0.500  PR-AUC=0.117
+logistic regression        val ROC-AUC=0.770  PR-AUC=0.408
+gradient boosting          val ROC-AUC=0.804  PR-AUC=0.475
+
+Best on validation PR-AUC: gradient boosting
+Chosen threshold (best val F1): 0.196
+
+=== TEST RESULTS ===
+ROC-AUC: 0.803
+PR-AUC : 0.460  (random guess ~ 0.117)
+Confusion matrix [[TN, FP], [FN, TP]]:
+ [[7338  647]
+ [ 495  563]]
+              precision    recall  f1-score   support
+
+          no      0.937     0.919     0.928      7985
+         yes      0.465     0.532     0.496      1058
+
+    accuracy                          0.874      9043
+   macro avg      0.701     0.726     0.712      9043
+weighted avg      0.882     0.874     0.877      9043
+
+Top 20% scored customers: 36.4% subscribe vs 11.7% overall (lift 3.1x)

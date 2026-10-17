@@ -1,0 +1,356 @@
+{
+  "schema_version": 1,
+  "case_id": "02_telco_churn",
+  "question": "What drives customer churn? Which factors are most associated with churn, and what can this dataset establish about contract type?",
+  "reference_status": "complete",
+  "reference_results": {
+    "case": "02_telco_churn",
+    "question": "What drives customer churn? Which factors are most associated with churn, and what can this dataset establish about contract type?",
+    "method": "Descriptive churn rates by contract with Wilson intervals; logistic association model adjusted for tenure, monthly charges, senior-citizen status, payment method, internet service, partner, and dependents.",
+    "n_total": 7043,
+    "churn_prevalence": 0.2653698707936959,
+    "contract_rates": [
+      {
+        "group": "Month-to-month",
+        "successes": 1655,
+        "n": 3875,
+        "rate": 0.4270967741935484,
+        "ci_95_lower": 0.4116019532373783,
+        "ci_95_upper": 0.4427359963802429
+      },
+      {
+        "group": "One year",
+        "successes": 166,
+        "n": 1473,
+        "rate": 0.11269517990495587,
+        "ci_95_lower": 0.09754355753104996,
+        "ci_95_upper": 0.12986166380453906
+      },
+      {
+        "group": "Two year",
+        "successes": 48,
+        "n": 1695,
+        "rate": 0.02831858407079646,
+        "ci_95_lower": 0.02142533413217164,
+        "ci_95_upper": 0.03734498743156174
+      }
+    ],
+    "adjusted_contract_odds_ratios": [
+      {
+        "term": "C(Contract, Treatment(reference='Month-to-month'))[T.One year]",
+        "odds_ratio": 0.47018970348112643,
+        "ci_95_lower": 0.38324847022416225,
+        "ci_95_upper": 0.5768538544468572,
+        "p_value": 4.687145046654188e-13
+      },
+      {
+        "term": "C(Contract, Treatment(reference='Month-to-month'))[T.Two year]",
+        "odds_ratio": 0.21562142241881735,
+        "ci_95_lower": 0.15413465681428629,
+        "ci_95_upper": 0.3016362365663943,
+        "p_value": 3.3188432240122606e-19
+      }
+    ],
+    "model_n": 7043,
+    "limitations": [
+      "This is an observational customer dataset; adjusted odds ratios are not causal effects.",
+      "The covariate set is limited to recorded fields and cannot remove unmeasured confounding.",
+      "The source is a sample dataset; results do not establish effects for a specific future intervention or population."
+    ]
+  },
+  "source_sha256": {
+    "data\\raw\\02_telco_churn\\telco-customer-churn.arff": "52fc98c22e7350402a0cbcbb1d5a7f50981ad0236bab440a58918ab32a8a20f2"
+  },
+  "ai_audit_status": "complete",
+  "ai_audit_verdict": "Partly reliable",
+  "audit_findings": [
+    {
+      "finding_type": "ARFF loader failure",
+      "severity": "Major",
+      "ai_output_location": "Runnable Python code, ARFF load step",
+      "measured_effect": "The saved run exited 1 with NotImplementedError: String attributes not supported yet, sorry; stdout is 0 bytes, so none of the requested statistics were emitted.",
+      "effect_estimate": 1,
+      "ci_95": null,
+      "corrected_effect": {
+        "independent_loader": "src/reference_analyses.py::load_case_data",
+        "rows_loaded": 7043,
+        "original_ai_artifacts_preserved": true
+      },
+      "notebook_cell": "audit_evidence.ipynb code cell 1"
+    },
+    {
+      "finding_type": "Rank-deficient adjusted model",
+      "severity": "Major",
+      "ai_output_location": "Adjusted logistic-regression formula",
+      "measured_effect": "The design has 18 columns but rank 16 (deficiency 2); the exact submitted model then fails with LinAlgError: Singular matrix.",
+      "effect_estimate": 2,
+      "ci_95": null,
+      "corrected_effect": {
+        "contract_odds_ratios_after_category_recode": [
+          {
+            "term": "C(Contract, Treatment('Month-to-month'))[T.One year]",
+            "odds_ratio": 0.515877518271662,
+            "ci_95": [
+              0.419402620397395,
+              0.6345444709095145
+            ],
+            "p_value": 3.707572349522673e-10
+          },
+          {
+            "term": "C(Contract, Treatment('Month-to-month'))[T.Two year]",
+            "odds_ratio": 0.262105578188379,
+            "ci_95": [
+              0.18650972079619346,
+              0.3683418420455142
+            ],
+            "p_value": 1.2303360611049347e-14
+          }
+        ],
+        "model_n": 7043,
+        "converged": true
+      },
+      "notebook_cell": "audit_evidence.ipynb code cell 2"
+    }
+  ],
+  "corrected_results": {
+    "independent_audit": {
+      "saved_ai_run": {
+        "run_record": "reports/ai_code_runs/02_telco_churn/20261016T151620.802157Z/attempt-1/run.json",
+        "exit_code": 1,
+        "stdout_bytes": 0,
+        "arff_parser_error": "NotImplementedError: String attributes not supported yet, sorry"
+      },
+      "descriptive": {
+        "n_total": 7043,
+        "churn_count": 1869,
+        "churn_prevalence": 0.2653698707936959,
+        "contract_rates": [
+          {
+            "contract": "Month-to-month",
+            "churn_count": 1655,
+            "n": 3875,
+            "rate": 0.4270967741935484,
+            "ci_95": [
+              0.4116019532373783,
+              0.4427359963802429
+            ]
+          },
+          {
+            "contract": "One year",
+            "churn_count": 166,
+            "n": 1473,
+            "rate": 0.11269517990495587,
+            "ci_95": [
+              0.09754355753104996,
+              0.12986166380453906
+            ]
+          },
+          {
+            "contract": "Two year",
+            "churn_count": 48,
+            "n": 1695,
+            "rate": 0.02831858407079646,
+            "ci_95": [
+              0.02142533413217164,
+              0.03734498743156174
+            ]
+          }
+        ],
+        "chi_square": {
+          "statistic": 1184.5965720837926,
+          "degrees_freedom": 2,
+          "p_value": 5.863038300673391e-258,
+          "cramers_v": 0.4101156965761409,
+          "minimum_expected_count": 390.889819679114
+        }
+      },
+      "mutual_information": {
+        "ranking": [
+          {
+            "feature": "Contract",
+            "mutual_information": 0.09845305342598942
+          },
+          {
+            "feature": "tenure",
+            "mutual_information": 0.06794528458644189
+          },
+          {
+            "feature": "OnlineSecurity",
+            "mutual_information": 0.06467728245735829
+          },
+          {
+            "feature": "TechSupport",
+            "mutual_information": 0.06302103606897548
+          },
+          {
+            "feature": "InternetService",
+            "mutual_information": 0.05557418477268879
+          },
+          {
+            "feature": "OnlineBackup",
+            "mutual_information": 0.04679232253922637
+          },
+          {
+            "feature": "MonthlyCharges",
+            "mutual_information": 0.0455345614760585
+          },
+          {
+            "feature": "TotalCharges",
+            "mutual_information": 0.04504623366946792
+          },
+          {
+            "feature": "PaymentMethod",
+            "mutual_information": 0.044518668630902994
+          },
+          {
+            "feature": "DeviceProtection",
+            "mutual_information": 0.04391690927485155
+          },
+          {
+            "feature": "StreamingMovies",
+            "mutual_information": 0.03200094959522297
+          },
+          {
+            "feature": "StreamingTV",
+            "mutual_information": 0.031907975162527094
+          },
+          {
+            "feature": "PaperlessBilling",
+            "mutual_information": 0.019194399646111526
+          },
+          {
+            "feature": "Dependents",
+            "mutual_information": 0.014467261139424592
+          },
+          {
+            "feature": "SeniorCitizen",
+            "mutual_information": 0.01260584364185613
+          },
+          {
+            "feature": "Partner",
+            "mutual_information": 0.011453657253317984
+          },
+          {
+            "feature": "MultipleLines",
+            "mutual_information": 0.0008012658524292199
+          },
+          {
+            "feature": "PhoneService",
+            "mutual_information": 7.215949186982484e-05
+          },
+          {
+            "feature": "gender",
+            "mutual_information": 3.7082914405128786e-05
+          }
+        ],
+        "subsample_stability": {
+          "resamples": 200,
+          "seed": 42,
+          "sample_fraction": 0.8,
+          "top_feature_selection_frequency": {
+            "Contract": 1.0
+          },
+          "contract_minus_tenure_mi_difference": 0.030507768839547533,
+          "contract_minus_tenure_mi_difference_subsample_interval_95": [
+            0.014251158739527234,
+            0.03431431850102547
+          ]
+        },
+        "categorical_features_treated_as_discrete": [
+          "gender",
+          "Partner",
+          "Dependents",
+          "PhoneService",
+          "MultipleLines",
+          "InternetService",
+          "OnlineSecurity",
+          "OnlineBackup",
+          "DeviceProtection",
+          "TechSupport",
+          "StreamingTV",
+          "StreamingMovies",
+          "Contract",
+          "PaperlessBilling",
+          "PaymentMethod"
+        ],
+        "missing_total_charges_imputed_to_zero": 11
+      },
+      "submitted_adjusted_model": {
+        "column_count": 18,
+        "matrix_rank": 16,
+        "rank_deficiency": 2,
+        "exact_duplicate_columns": [
+          [
+            "C(Internet)[T.No]",
+            "C(OnlineSecurity)[T.No internet service]"
+          ],
+          [
+            "C(Internet)[T.No]",
+            "C(TechSupport)[T.No internet service]"
+          ],
+          [
+            "C(OnlineSecurity)[T.No internet service]",
+            "C(TechSupport)[T.No internet service]"
+          ]
+        ],
+        "fit_error_after_loader_is_replaced": "LinAlgError: Singular matrix",
+        "formula": "y ~ C(Contract, Treatment('Month-to-month')) + tenure + MonthlyCharges + C(Internet) + C(OnlineSecurity) + C(TechSupport) + C(Pay) + C(PaperlessBilling) + SeniorCitizen + C(Partner) + C(Dependents)"
+      },
+      "corrected_adjusted_model": {
+        "category_correction": "Recode 'No internet service' to 'No' for OnlineSecurity and TechSupport before fitting alongside InternetService.",
+        "converged": true,
+        "n": 7043,
+        "contract_odds_ratios": [
+          {
+            "term": "C(Contract, Treatment('Month-to-month'))[T.One year]",
+            "odds_ratio": 0.515877518271662,
+            "ci_95": [
+              0.419402620397395,
+              0.6345444709095145
+            ],
+            "p_value": 3.707572349522673e-10
+          },
+          {
+            "term": "C(Contract, Treatment('Month-to-month'))[T.Two year]",
+            "odds_ratio": 0.262105578188379,
+            "ci_95": [
+              0.18650972079619346,
+              0.3683418420455142
+            ],
+            "p_value": 1.2303360611049347e-14
+          }
+        ],
+        "median_tenure_by_contract": {
+          "Month-to-month": 12.0,
+          "One year": 44.0,
+          "Two year": 64.0
+        }
+      }
+    },
+    "reference_comparison": [
+      {
+        "term": "C(Contract, Treatment(reference='Month-to-month'))[T.One year]",
+        "odds_ratio": 0.47018970348112643,
+        "ci_95_lower": 0.38324847022416225,
+        "ci_95_upper": 0.5768538544468572,
+        "p_value": 4.687145046654188e-13
+      },
+      {
+        "term": "C(Contract, Treatment(reference='Month-to-month'))[T.Two year]",
+        "odds_ratio": 0.21562142241881735,
+        "ci_95_lower": 0.15413465681428629,
+        "ci_95_upper": 0.3016362365663943,
+        "p_value": 3.3188432240122606e-19
+      }
+    ],
+    "ai_output_verified": {
+      "saved_run_exit_code": 1,
+      "submitted_code_completed": false,
+      "no_statistics_emitted": true,
+      "contract_association_reproduced_independently": true,
+      "causal_effect_established": false
+    },
+    "conclusion": "The descriptive contract association and the direction of adjusted associations are supported by the data, but the submitted script does not execute successfully and its specified adjusted model is singular."
+  },
+  "generated_at_utc": "2026-10-16T12:08:02+00:00"
+}

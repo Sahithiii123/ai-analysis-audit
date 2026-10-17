@@ -1,0 +1,139 @@
+Analysis plan
+Load and clean. Read all five CSVs, parse timestamps, and keep orders with order_status == "delivered" and a non-null delivery date (late delivery is only defined when the order actually arrived).
+Define lateness. An order is late if order_delivered_customer_date > order_estimated_delivery_date. Also compute days late (negative means early) and bucket it: early, on time, 1-3 days late, 4-7 days late, more than 7 days late.
+Reviews. Orders can have several reviews. Keep the latest review per order (by review_answer_timestamp) so each order counts once.
+Late vs. review score.
+Mean and median score for late vs. on-time orders, and share of 1-star and 5-star reviews.
+Mean score by days-late bucket, to check for a dose-response pattern.
+Mann-Whitney U test and a rank correlation (Spearman) between days late and score. Report the effect size, not just the p-value.
+Seller-level late rate.
+Join items to orders, then collapse to unique (seller, order) pairs so multi-item orders are not double counted.
+Seller late rate = late orders / delivered orders.
+Because small sellers give noisy rates, restrict the distribution to sellers with at least 30 delivered orders. Also compute Wilson 95% intervals and flag sellers whose interval lower bound exceeds the platform-wide late rate.
+Summarize the distribution (quantiles, share of sellers with a rate above 10% and 20%), and break down by seller state.
+Seller late rate vs. seller review score, to see whether the order-level link holds at seller level.
+Caveats. Observational data only (no causal claim), reviews are self-selected, late orders may differ by region, product type, and freight distance, and multi-seller orders are attributed to every seller involved.
+Runnable Python code
+python
+import numpy as np
+import pandas as pd
+from scipy import stats
+from statsmodels.stats.proportion import proportion_confint
+
+BASE = "data/raw/03_olist_delivery_reviews/"
+orders = pd.read_csv(
+    BASE + "olist_orders_dataset.csv",
+    parse_dates=[
+        "order_purchase_timestamp",
+        "order_delivered_customer_date",
+        "order_estimated_delivery_date",
+    ],
+)
+items = pd.read_csv(BASE + "olist_order_items_dataset.csv")
+reviews = pd.read_csv(
+    BASE + "olist_order_reviews_dataset.csv",
+    parse_dates=["review_creation_date", "review_answer_timestamp"],
+)
+sellers = pd.read_csv(BASE + "olist_sellers_dataset.csv")
+customers = pd.read_csv(BASE + "olist_customers_dataset.csv")  # loaded for completeness
+
+# ---- 1-2. Delivered orders and lateness -------------------------------------
+d = orders[
+    (orders["order_status"] == "delivered")
+    & orders["order_delivered_customer_date"].notna()
+    & orders["order_estimated_delivery_date"].notna()
+].copy()
+d["days_late"] = (
+    d["order_delivered_customer_date"] - d["order_estimated_delivery_date"]
+).dt.total_seconds() / 86400
+d["is_late"] = d["days_late"] > 0
+d["late_bucket"] = pd.cut(
+    d["days_late"],
+    bins=[-np.inf, 0, 3, 7, np.inf],
+    labels=["on time / early", "1-3 days late", "4-7 days late", ">7 days late"],
+)
+
+# ---- 3. One (latest) review per order ---------------------------------------
+rv = (
+    reviews.sort_values("review_answer_timestamp")
+    .drop_duplicates("order_id", keep="last")[["order_id", "review_score"]]
+)
+d = d.merge(rv, on="order_id", how="inner")
+print(f"Delivered orders with a review: {len(d):,}")
+print(f"Platform late rate: {d['is_late'].mean():.1%}\n")
+
+# ---- 4. Late vs review score ------------------------------------------------
+g = d.groupby("is_late")["review_score"].agg(["count", "mean", "median"])
+g["pct_1_star"] = d.groupby("is_late")["review_score"].apply(lambda s: (s == 1).mean())
+g["pct_5_star"] = d.groupby("is_late")["review_score"].apply(lambda s: (s == 5).mean())
+print("Review score by lateness:\n", g.round(3), "\n")
+
+print("Review score by days-late bucket:")
+print(
+    d.groupby("late_bucket", observed=True)["review_score"]
+    .agg(["count", "mean"])
+    .round(3),
+    "\n",
+)
+
+late_s = d.loc[d["is_late"], "review_score"]
+ontime_s = d.loc[~d["is_late"], "review_score"]
+u, p = stats.mannwhitneyu(late_s, ontime_s, alternative="two-sided")
+rank_biserial = 1 - 2 * u / (len(late_s) * len(ontime_s))  # sign: negative => late lower
+rho, p_rho = stats.spearmanr(d["days_late"], d["review_score"])
+print(f"Mann-Whitney p={p:.2e}, rank-biserial effect={-rank_biserial:.3f} (positive => on-time higher)")
+print(f"Spearman(days_late, score) rho={rho:.3f}, p={p_rho:.2e}\n")
+
+# ---- 5. Seller-level late rates ---------------------------------------------
+so = items[["order_id", "seller_id"]].drop_duplicates()
+so = so.merge(d[["order_id", "is_late", "review_score"]], on="order_id", how="inner")
+s = so.groupby("seller_id").agg(
+    orders=("order_id", "nunique"),
+    late=("is_late", "sum"),
+    avg_score=("review_score", "mean"),
+)
+s["late_rate"] = s["late"] / s["orders"]
+s = s.join(sellers.set_index("seller_id")[["seller_state", "seller_city"]])
+
+platform_rate = d["is_late"].mean()
+MIN_ORDERS = 30
+big = s[s["orders"] >= MIN_ORDERS].copy()
+lo, hi = proportion_confint(big["late"], big["orders"], alpha=0.05, method="wilson")
+big["ci_low"], big["ci_high"] = lo, hi
+big["significantly_above_platform"] = big["ci_low"] > platform_rate
+
+print(f"Sellers total: {len(s):,}; with >= {MIN_ORDERS} delivered orders: {len(big):,}")
+print("Seller late-rate quantiles (sellers with >=30 orders):")
+print(big["late_rate"].quantile([0.1, 0.25, 0.5, 0.75, 0.9, 0.99]).round(3))
+print(f"Share of sellers with late rate >10%: {(big['late_rate'] > 0.10).mean():.1%}")
+print(f"Share of sellers with late rate >20%: {(big['late_rate'] > 0.20).mean():.1%}")
+print(f"Sellers significantly above platform rate: {big['significantly_above_platform'].sum()}\n")
+
+print("Worst 10 sellers (>=30 orders):")
+print(
+    big.sort_values("late_rate", ascending=False)
+    .head(10)[["orders", "late_rate", "ci_low", "ci_high", "avg_score", "seller_state"]]
+    .round(3),
+    "\n",
+)
+
+state = (
+    big.groupby("seller_state")
+    .agg(sellers=("late_rate", "size"), median_late_rate=("late_rate", "median"))
+    .query("sellers >= 5")
+    .sort_values("median_late_rate", ascending=False)
+)
+print("Median seller late rate by seller state (>=5 sellers):\n", state.round(3), "\n")
+
+# ---- 6. Seller late rate vs seller review score -----------------------------
+r, pr = stats.spearmanr(big["late_rate"], big["avg_score"])
+print(f"Seller-level Spearman(late_rate, avg_score) = {r:.3f}, p={pr:.2e}")
+Written conclusion
+
+(Run the script to get the exact figures; the statements below describe what this analysis is designed to show and how to read it. The patterns are well documented for this public dataset, but confirm them against your output.)
+
+Late delivery and reviews. Late delivery is strongly associated with worse reviews. Late orders typically average roughly 2.5 stars or lower, versus about 4.2 for on-time orders, and they have far more 1-star and far fewer 5-star reviews. The pattern is graded: the longer past the estimated date, the lower the score, with orders more than a week late being the worst. The Mann-Whitney and Spearman results quantify this; with this many orders the p-values will be tiny, so judge importance by the effect sizes and the bucket means.
+
+Seller variation. Platform-wide, only a small minority of delivered orders (single-digit percent) arrive late, but that rate is very uneven across sellers. Among sellers with at least 30 orders, the median seller is late on very few orders while a long tail of sellers is late on 10-20% or more. The Wilson intervals flag which of those sellers are credibly worse than the platform average rather than just unlucky on small volume. Seller states also differ, so geography (distance to customers) likely contributes. Sellers with higher late rates tend to have lower average review scores, consistent with the order-level finding.
+
+Caveats. This is observational: late orders may also involve other problems (damaged items, wrong products, long distances) that independently lower scores, and only customers who chose to review are included. The estimated delivery date is set by the platform, so “late” reflects both seller and carrier performance. Multi-seller orders are counted for every seller involved. A follow-up could control for product category, freight value, and customer-seller distance (for example, with a regression of score on lateness plus those covariates) to see how much of the review gap is attributable to lateness itself.

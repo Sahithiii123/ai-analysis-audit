@@ -1,0 +1,12 @@
+{
+  "case": "03_olist_delivery_reviews",
+  "original": {
+    "attempt": 1,
+    "exit_code": 0,
+    "timed_out": false,
+    "timeout_seconds": 300,
+    "workspace": "reports/ai_code_runs/03_olist_delivery_reviews/20261016T161854.322072Z/attempt-1"
+  },
+  "repair": null,
+  "finding": null
+}

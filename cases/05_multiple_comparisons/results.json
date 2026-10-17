@@ -1,0 +1,752 @@
+{
+  "schema_version": 1,
+  "case_id": "05_multiple_comparisons",
+  "question": "Which recorded characteristics are associated with income above $50,000 in this dataset?",
+  "reference_status": "complete",
+  "reference_results": {
+    "case": "05_multiple_comparisons",
+    "question": "Which recorded characteristics are associated with income above $50,000 in this dataset?",
+    "method": "Descriptive sample proportions and Wilson score intervals by age band, education, sex, and workclass; no causal interpretation or data-driven hypothesis selection.",
+    "n_total": 48842,
+    "positive_count": 11687,
+    "positive_prevalence": 0.23928176569346055,
+    "group_rates": {
+      "age_band": [
+        {
+          "group": "25-34",
+          "successes": 2115,
+          "n": 12577,
+          "rate": 0.16816410908801782,
+          "ci_95_lower": 0.1617291484744368,
+          "ci_95_upper": 0.17480171654590398
+        },
+        {
+          "group": "35-44",
+          "successes": 4059,
+          "n": 12193,
+          "rate": 0.332895923890757,
+          "ci_95_lower": 0.324585131689032,
+          "ci_95_upper": 0.34131197669282853
+        },
+        {
+          "group": "45-54",
+          "successes": 3455,
+          "n": 8771,
+          "rate": 0.3939117546459925,
+          "ci_95_lower": 0.383734680814254,
+          "ci_95_upper": 0.4041817153128493
+        },
+        {
+          "group": "55+",
+          "successes": 1965,
+          "n": 6869,
+          "rate": 0.28606784102489446,
+          "ci_95_lower": 0.27550252329992114,
+          "ci_95_upper": 0.29687230629431466
+        },
+        {
+          "group": "under-25",
+          "successes": 93,
+          "n": 8432,
+          "rate": 0.011029411764705883,
+          "ci_95_lower": 0.009012280007647979,
+          "ci_95_upper": 0.013491872037811803
+        }
+      ],
+      "education": [
+        {
+          "group": "10th",
+          "successes": 87,
+          "n": 1389,
+          "rate": 0.06263498920086392,
+          "ci_95_lower": 0.05105912967422313,
+          "ci_95_upper": 0.07662335543163437
+        },
+        {
+          "group": "11th",
+          "successes": 92,
+          "n": 1812,
+          "rate": 0.05077262693156733,
+          "ci_95_lower": 0.041580965975667274,
+          "ci_95_upper": 0.061864991769282875
+        },
+        {
+          "group": "12th",
+          "successes": 48,
+          "n": 657,
+          "rate": 0.0730593607305936,
+          "ci_95_lower": 0.05554555356353257,
+          "ci_95_upper": 0.09553676351576568
+        },
+        {
+          "group": "1st-4th",
+          "successes": 8,
+          "n": 247,
+          "rate": 0.032388663967611336,
+          "ci_95_lower": 0.016501455322103526,
+          "ci_95_upper": 0.06259814373929865
+        },
+        {
+          "group": "5th-6th",
+          "successes": 27,
+          "n": 509,
+          "rate": 0.05304518664047151,
+          "ci_95_lower": 0.036708890267067876,
+          "ci_95_upper": 0.07607734771319134
+        },
+        {
+          "group": "7th-8th",
+          "successes": 62,
+          "n": 955,
+          "rate": 0.06492146596858639,
+          "ci_95_lower": 0.050972165684189774,
+          "ci_95_upper": 0.08235692396315392
+        },
+        {
+          "group": "9th",
+          "successes": 41,
+          "n": 756,
+          "rate": 0.05423280423280423,
+          "ci_95_lower": 0.040226385601785916,
+          "ci_95_upper": 0.07274646922759347
+        },
+        {
+          "group": "Assoc-acdm",
+          "successes": 413,
+          "n": 1601,
+          "rate": 0.2579637726420987,
+          "ci_95_lower": 0.2371298592170582,
+          "ci_95_upper": 0.2799563951662857
+        },
+        {
+          "group": "Assoc-voc",
+          "successes": 522,
+          "n": 2061,
+          "rate": 0.25327510917030566,
+          "ci_95_lower": 0.23497072998014787,
+          "ci_95_upper": 0.2724975089708244
+        },
+        {
+          "group": "Bachelors",
+          "successes": 3313,
+          "n": 8025,
+          "rate": 0.41283489096573206,
+          "ci_95_lower": 0.4021071532030442,
+          "ci_95_upper": 0.42364603831588626
+        },
+        {
+          "group": "Doctorate",
+          "successes": 431,
+          "n": 594,
+          "rate": 0.7255892255892256,
+          "ci_95_lower": 0.6883418037311438,
+          "ci_95_upper": 0.7599375787804982
+        },
+        {
+          "group": "HS-grad",
+          "successes": 2503,
+          "n": 15784,
+          "rate": 0.15857830714647744,
+          "ci_95_lower": 0.1529628671952965,
+          "ci_95_upper": 0.16435989487371883
+        },
+        {
+          "group": "Masters",
+          "successes": 1459,
+          "n": 2657,
+          "rate": 0.5491155438464433,
+          "ci_95_lower": 0.5301383530324395,
+          "ci_95_upper": 0.5679509183650668
+        },
+        {
+          "group": "Preschool",
+          "successes": 1,
+          "n": 83,
+          "rate": 0.012048192771084338,
+          "ci_95_lower": 0.0021299774281082692,
+          "ci_95_upper": 0.06513580668032404
+        },
+        {
+          "group": "Prof-school",
+          "successes": 617,
+          "n": 834,
+          "rate": 0.7398081534772182,
+          "ci_95_lower": 0.7089802957623035,
+          "ci_95_upper": 0.7684369957656438
+        },
+        {
+          "group": "Some-college",
+          "successes": 2063,
+          "n": 10878,
+          "rate": 0.18964883250597536,
+          "ci_95_lower": 0.18239196835046556,
+          "ci_95_upper": 0.19712481421330652
+        }
+      ],
+      "sex": [
+        {
+          "group": "Female",
+          "successes": 1769,
+          "n": 16192,
+          "rate": 0.10925148221343874,
+          "ci_95_lower": 0.10453888692651986,
+          "ci_95_upper": 0.11414943919880854
+        },
+        {
+          "group": "Male",
+          "successes": 9918,
+          "n": 32650,
+          "rate": 0.3037672281776417,
+          "ci_95_lower": 0.29880223472090583,
+          "ci_95_upper": 0.30877839201302515
+        }
+      ],
+      "workclass": [
+        {
+          "group": "Federal-gov",
+          "successes": 561,
+          "n": 1432,
+          "rate": 0.39175977653631283,
+          "ci_95_lower": 0.36679880976271456,
+          "ci_95_upper": 0.4172999163914853
+        },
+        {
+          "group": "Local-gov",
+          "successes": 927,
+          "n": 3136,
+          "rate": 0.2955994897959184,
+          "ci_95_lower": 0.27988676010251706,
+          "ci_95_upper": 0.3118123696740826
+        },
+        {
+          "group": "Missing",
+          "successes": 265,
+          "n": 2799,
+          "rate": 0.09467667023937121,
+          "ci_95_lower": 0.08437938819786063,
+          "ci_95_upper": 0.10608499113428678
+        },
+        {
+          "group": "Never-worked",
+          "successes": 0,
+          "n": 10,
+          "rate": 0.0,
+          "ci_95_lower": 0.0,
+          "ci_95_upper": 0.2775327998628892
+        },
+        {
+          "group": "Private",
+          "successes": 7387,
+          "n": 33906,
+          "rate": 0.21786704418097091,
+          "ci_95_lower": 0.213505281535509,
+          "ci_95_upper": 0.222292729397882
+        },
+        {
+          "group": "Self-emp-inc",
+          "successes": 938,
+          "n": 1695,
+          "rate": 0.5533923303834808,
+          "ci_95_lower": 0.5296310805935283,
+          "ci_95_upper": 0.5769121162776187
+        },
+        {
+          "group": "Self-emp-not-inc",
+          "successes": 1077,
+          "n": 3862,
+          "rate": 0.27887105126877265,
+          "ci_95_lower": 0.264952826658656,
+          "ci_95_upper": 0.2932287443670117
+        },
+        {
+          "group": "State-gov",
+          "successes": 530,
+          "n": 1981,
+          "rate": 0.2675416456335184,
+          "ci_95_lower": 0.24851157877153557,
+          "ci_95_upper": 0.2874715115115452
+        },
+        {
+          "group": "Without-pay",
+          "successes": 2,
+          "n": 21,
+          "rate": 0.09523809523809523,
+          "ci_95_lower": 0.02651876743807452,
+          "ci_95_upper": 0.2891413907391826
+        }
+      ]
+    },
+    "limitations": [
+      "Intervals describe this extracted sample and do not account for the Census sampling design.",
+      "The `fnlwgt` field is not used as a design weight because the public extract lacks the full design information needed for design-based uncertainty.",
+      "Group differences are descriptive associations; they do not establish the effects of changing a recorded characteristic."
+    ]
+  },
+  "source_sha256": {
+    "data\\raw\\05_multiple_comparisons\\adult.arff": "77aa1703717a29f0b5642e94c3ba1defd2486f0b34d4d8eccc1b37a5f7d226b0"
+  },
+  "ai_audit_status": "complete",
+  "ai_audit_verdict": "Reliable",
+  "audit_findings": [
+    {
+      "finding_type": "Missingness direction",
+      "severity": "Minor",
+      "ai_output_location": "Written conclusion, missing values",
+      "measured_effect": "Missing workclass and occupation records have lower high-income rates, but missing native-country records are +1.8 percentage points higher than observed records (95% CI -1.1 to +4.8). The broad claim that all three missingness patterns skew lower income is not supported.",
+      "effect_estimate": 0.017738939957048505,
+      "ci_95": [
+        -0.010636224658320911,
+        0.0482616967593319
+      ],
+      "corrected_effect": {
+        "workclass_missing_minus_observed": -0.1533957837710104,
+        "workclass_difference_ci_95": [
+          -0.16443037477967007,
+          -0.1413315254239869
+        ],
+        "occupation_missing_minus_observed": -0.1537867215029087,
+        "occupation_difference_ci_95": [
+          -0.16478885698822307,
+          -0.14175824510810203
+        ],
+        "native_country_missing_minus_observed": 0.017738939957048505,
+        "native_country_difference_ci_95": [
+          -0.010636224658320911,
+          0.0482616967593319
+        ]
+      },
+      "notebook_cell": "audit_evidence.ipynb code cell 2"
+    },
+    {
+      "finding_type": "Zero-formatted p-values",
+      "severity": "Minor",
+      "ai_output_location": "Feature-level test table",
+      "measured_effect": "10 of 14 raw p-values underflow to 0.0 and print as zero; these should be reported as below numeric precision, not literal probability zero. The corrected significance decisions are unchanged.",
+      "effect_estimate": 10,
+      "ci_95": null,
+      "corrected_effect": {
+        "features_with_p_value_zero": [
+          "age",
+          "education-num",
+          "capital-gain",
+          "hours-per-week",
+          "workclass",
+          "education",
+          "marital-status",
+          "occupation",
+          "relationship",
+          "sex"
+        ],
+        "bonferroni_significant_features": 13,
+        "number_of_feature_level_tests": 14
+      },
+      "notebook_cell": "audit_evidence.ipynb code cell 2"
+    }
+  ],
+  "corrected_results": {
+    "independent_audit": {
+      "saved_ai_run": {
+        "run_record": "reports/ai_code_runs/05_multiple_comparisons/20261016T151644.199588Z/attempt-1/run.json",
+        "exit_code": 0,
+        "stdout_bytes": 2845,
+        "stderr_has_exception": false,
+        "holdout_auc_present": true
+      },
+      "n_total": 48842,
+      "positive_count": 11687,
+      "positive_prevalence": 0.23928176569346055,
+      "fnlwgt_weighted_prevalence": 0.2377759609645643,
+      "feature_associations": {
+        "n_feature_level_tests": 14,
+        "results_sorted_by_reported_effect": [
+          {
+            "feature": "relationship",
+            "type": "categorical",
+            "p_value": 0.0,
+            "effect_name": "Cramer's V",
+            "effect": 0.4544868985792051,
+            "bias_corrected_cramers_v": 0.45437891144289516,
+            "level_count": 6,
+            "highest_rate_level": "Wife",
+            "highest_rate": 0.4688974688974689,
+            "lowest_rate_level": "Own-child",
+            "lowest_rate": 0.014641867827463396,
+            "p_bh": 0.0,
+            "p_bonferroni": 0.0
+          },
+          {
+            "feature": "marital-status",
+            "type": "categorical",
+            "p_value": 0.0,
+            "effect_name": "Cramer's V",
+            "effect": 0.4483022183099439,
+            "bias_corrected_cramers_v": 0.4481697711621431,
+            "level_count": 7,
+            "highest_rate_level": "Married-civ-spouse",
+            "highest_rate": 0.4461325349658162,
+            "lowest_rate_level": "Never-married",
+            "lowest_rate": 0.045479928026307626,
+            "p_bh": 0.0,
+            "p_bonferroni": 0.0
+          },
+          {
+            "feature": "education-num",
+            "type": "numeric",
+            "p_value": 0.0,
+            "effect_name": "absolute rank-biserial",
+            "effect": 0.432468342244557,
+            "auc_probability_high_income_value_higher": 0.7162341711222785,
+            "positive_median": 12.0,
+            "negative_median": 9.0,
+            "p_bh": 0.0,
+            "p_bonferroni": 0.0
+          },
+          {
+            "feature": "education",
+            "type": "categorical",
+            "p_value": 0.0,
+            "effect_name": "Cramer's V",
+            "effect": 0.3658683488509228,
+            "bias_corrected_cramers_v": 0.3654521366236938,
+            "level_count": 16,
+            "highest_rate_level": "Prof-school",
+            "highest_rate": 0.7398081534772182,
+            "lowest_rate_level": "Preschool",
+            "lowest_rate": 0.012048192771084338,
+            "p_bh": 0.0,
+            "p_bonferroni": 0.0
+          },
+          {
+            "feature": "age",
+            "type": "numeric",
+            "p_value": 0.0,
+            "effect_name": "absolute rank-biserial",
+            "effect": 0.3645152965250702,
+            "auc_probability_high_income_value_higher": 0.6822576482625351,
+            "positive_median": 43.0,
+            "negative_median": 34.0,
+            "p_bh": 0.0,
+            "p_bonferroni": 0.0
+          },
+          {
+            "feature": "occupation",
+            "type": "categorical",
+            "p_value": 0.0,
+            "effect_name": "Cramer's V",
+            "effect": 0.3500005514127936,
+            "bias_corrected_cramers_v": 0.3495943991263599,
+            "level_count": 15,
+            "highest_rate_level": "Exec-managerial",
+            "highest_rate": 0.47781794281958595,
+            "lowest_rate_level": "Priv-house-serv",
+            "lowest_rate": 0.012396694214876033,
+            "p_bh": 0.0,
+            "p_bonferroni": 0.0
+          },
+          {
+            "feature": "hours-per-week",
+            "type": "numeric",
+            "p_value": 0.0,
+            "effect_name": "absolute rank-biserial",
+            "effect": 0.34371847706639014,
+            "auc_probability_high_income_value_higher": 0.6718592385331951,
+            "positive_median": 40.0,
+            "negative_median": 40.0,
+            "p_bh": 0.0,
+            "p_bonferroni": 0.0
+          },
+          {
+            "feature": "sex",
+            "type": "categorical",
+            "p_value": 0.0,
+            "effect_name": "Cramer's V",
+            "effect": 0.21457706493774975,
+            "bias_corrected_cramers_v": 0.21453154666546925,
+            "level_count": 2,
+            "highest_rate_level": "Male",
+            "highest_rate": 0.3037672281776417,
+            "lowest_rate_level": "Female",
+            "lowest_rate": 0.10925148221343874,
+            "p_bh": 0.0,
+            "p_bonferroni": 0.0
+          },
+          {
+            "feature": "workclass",
+            "type": "categorical",
+            "p_value": 0.0,
+            "effect_name": "Cramer's V",
+            "effect": 0.18160076368356623,
+            "bias_corrected_cramers_v": 0.18115107631207908,
+            "level_count": 9,
+            "highest_rate_level": "Self-emp-inc",
+            "highest_rate": 0.5533923303834808,
+            "lowest_rate_level": "Never-worked",
+            "lowest_rate": 0.0,
+            "p_bh": 0.0,
+            "p_bonferroni": 0.0
+          },
+          {
+            "feature": "capital-gain",
+            "type": "numeric",
+            "p_value": 0.0,
+            "effect_name": "absolute rank-biserial",
+            "effect": 0.1794317688220346,
+            "auc_probability_high_income_value_higher": 0.5897158844110173,
+            "positive_median": 0.0,
+            "negative_median": 0.0,
+            "p_bh": 0.0,
+            "p_bonferroni": 0.0
+          },
+          {
+            "feature": "race",
+            "type": "categorical",
+            "p_value": 4.2843777102235e-104,
+            "effect_name": "Cramer's V",
+            "effect": 0.09985722238766276,
+            "bias_corrected_cramers_v": 0.09944731744509899,
+            "level_count": 5,
+            "highest_rate_level": "Asian-Pac-Islander",
+            "highest_rate": 0.26925608953258723,
+            "lowest_rate_level": "Amer-Indian-Eskimo",
+            "lowest_rate": 0.11702127659574468,
+            "p_bh": 4.9984406619274167e-104,
+            "p_bonferroni": 5.9981287943129e-103
+          },
+          {
+            "feature": "native-country",
+            "type": "categorical",
+            "p_value": 1.0356184275397302e-70,
+            "effect_name": "Cramer's V",
+            "effect": 0.09622379603387875,
+            "bias_corrected_cramers_v": 0.09175910125047917,
+            "level_count": 42,
+            "highest_rate_level": "France",
+            "highest_rate": 0.42105263157894735,
+            "lowest_rate_level": "Holand-Netherlands",
+            "lowest_rate": 0.0,
+            "p_bh": 1.1152813835043247e-70,
+            "p_bonferroni": 1.449865798555622e-69
+          },
+          {
+            "feature": "capital-loss",
+            "type": "numeric",
+            "p_value": 5.1764438436104835e-205,
+            "effect_name": "absolute rank-biserial",
+            "effect": 0.06841148658643803,
+            "auc_probability_high_income_value_higher": 0.534205743293219,
+            "positive_median": 0.0,
+            "negative_median": 0.0,
+            "p_bh": 6.5882012555042515e-205,
+            "p_bonferroni": 7.247021381054677e-204
+          },
+          {
+            "feature": "fnlwgt",
+            "type": "numeric",
+            "p_value": 0.18969090173479852,
+            "effect_name": "absolute rank-biserial",
+            "effect": 0.008030578507172259,
+            "auc_probability_high_income_value_higher": 0.49598471074641387,
+            "positive_median": 176729.0,
+            "negative_median": 178811.0,
+            "p_bh": 0.18969090173479852,
+            "p_bonferroni": 1.0
+          }
+        ],
+        "p_values_returned_as_zero": [
+          "age",
+          "education-num",
+          "capital-gain",
+          "hours-per-week",
+          "workclass",
+          "education",
+          "marital-status",
+          "occupation",
+          "relationship",
+          "sex"
+        ],
+        "bh_significant_count": 13,
+        "bonferroni_significant_count": 13
+      },
+      "missingness": {
+        "workclass": {
+          "missing": {
+            "missing": true,
+            "successes": 265,
+            "n": 2799,
+            "rate": 0.09467667023937121,
+            "ci_95": [
+              0.08437938819786063,
+              0.10608499113428678
+            ]
+          },
+          "observed": {
+            "missing": false,
+            "successes": 11422,
+            "n": 46043,
+            "rate": 0.2480724540103816,
+            "ci_95": [
+              0.24414861101882868,
+              0.25203833112471286
+            ]
+          },
+          "missing_minus_observed_income_rate": -0.1533957837710104,
+          "difference_ci_95": [
+            -0.16443037477967007,
+            -0.1413315254239869
+          ]
+        },
+        "occupation": {
+          "missing": {
+            "missing": true,
+            "successes": 265,
+            "n": 2809,
+            "rate": 0.09433962264150944,
+            "ci_95": [
+              0.08407740418584814,
+              0.10570985067227368
+            ]
+          },
+          "observed": {
+            "missing": false,
+            "successes": 11422,
+            "n": 46033,
+            "rate": 0.24812634414441814,
+            "ci_95": [
+              0.2442017857095309,
+              0.25209293683909934
+            ]
+          },
+          "missing_minus_observed_income_rate": -0.1537867215029087,
+          "difference_ci_95": [
+            -0.16478885698822307,
+            -0.14175824510810203
+          ]
+        },
+        "native-country": {
+          "missing": {
+            "missing": true,
+            "successes": 220,
+            "n": 857,
+            "rate": 0.25670945157526254,
+            "ci_95": [
+              0.22859483543576317,
+              0.2869954097514665
+            ]
+          },
+          "observed": {
+            "missing": false,
+            "successes": 11467,
+            "n": 47985,
+            "rate": 0.23897051161821403,
+            "ci_95": [
+              0.2351758548273352,
+              0.24280695870867605
+            ]
+          },
+          "missing_minus_observed_income_rate": 0.017738939957048505,
+          "difference_ci_95": [
+            -0.010636224658320911,
+            0.0482616967593319
+          ]
+        }
+      },
+      "adjusted_model": {
+        "train_n": 36631,
+        "test_n": 12211,
+        "test_auc": 0.8989270610642558,
+        "test_auc_ci_95": [
+          0.8931921538635177,
+          0.9050196293956572
+        ],
+        "largest_negative_log_odds": [
+          {
+            "term": "categorical__native-country_Columbia",
+            "coefficient": -1.614992753447875
+          },
+          {
+            "term": "categorical__occupation_Priv-house-serv",
+            "coefficient": -1.408561097029632
+          },
+          {
+            "term": "categorical__native-country_Laos",
+            "coefficient": -1.0166921921469894
+          },
+          {
+            "term": "categorical__native-country_South",
+            "coefficient": -0.9767758628432819
+          },
+          {
+            "term": "categorical__workclass_Self-emp-not-inc",
+            "coefficient": -0.9418416339360867
+          },
+          {
+            "term": "categorical__occupation_Farming-fishing",
+            "coefficient": -0.9256602680093317
+          },
+          {
+            "term": "categorical__workclass_Without-pay",
+            "coefficient": -0.9136135025270463
+          },
+          {
+            "term": "categorical__occupation_Other-service",
+            "coefficient": -0.8971479870960175
+          }
+        ],
+        "largest_positive_log_odds": [
+          {
+            "term": "numeric__education-num",
+            "coefficient": 0.7255474418934634
+          },
+          {
+            "term": "categorical__occupation_Exec-managerial",
+            "coefficient": 0.7299102071311533
+          },
+          {
+            "term": "categorical__sex_Male",
+            "coefficient": 0.738417081024227
+          },
+          {
+            "term": "categorical__native-country_Portugal",
+            "coefficient": 0.9418093938412287
+          },
+          {
+            "term": "categorical__relationship_Wife",
+            "coefficient": 1.1370867064825192
+          },
+          {
+            "term": "categorical__native-country_Ireland",
+            "coefficient": 1.2472292210955194
+          },
+          {
+            "term": "categorical__marital-status_Married-AF-spouse",
+            "coefficient": 1.4595144651960252
+          },
+          {
+            "term": "categorical__marital-status_Married-civ-spouse",
+            "coefficient": 2.0235797070003176
+          }
+        ]
+      },
+      "redundancy_checks": {
+        "relationship_marital_cramers_v": 0.48815980396007874,
+        "education_levels_with_multiple_education_num_values": 0,
+        "education_level_count": 16
+      }
+    },
+    "reference_comparison": {
+      "reference_rows": 48842,
+      "reference_prevalence": 0.23928176569346055
+    },
+    "ai_output_verified": {
+      "saved_run_exit_code": 0,
+      "run_completed": true,
+      "holdout_auc_reproduced": true,
+      "row_count_reproduced": true,
+      "feature_test_count": 14,
+      "bh_significant_count": 13,
+      "bonferroni_significant_count": 13
+    },
+    "interpretation": "The major feature associations and out-of-sample AUC reproduce. Associations describe this unweighted dataset, not causal effects or design-weighted population estimates."
+  },
+  "generated_at_utc": "2026-10-16T12:08:02+00:00"
+}

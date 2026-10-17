@@ -1,0 +1,62 @@
+Delivered orders with a review: 95,824
+Platform late rate: 8.0%
+
+Review score by lateness:
+          count   mean  median  pct_1_star  pct_5_star
+is_late                                              
+False    88163  4.294     5.0       0.066       0.624
+True      7661  2.565     2.0       0.462       0.222 
+
+Review score by days-late bucket:
+                 count   mean
+late_bucket                  
+on time / early  88163  4.294
+1-3 days late     2636  3.766
+4-7 days late     1773  2.316
+>7 days late      3252  1.727 
+
+Mann-Whitney p=0.00e+00, rank-biserial effect=-0.554 (positive => on-time higher)
+Spearman(days_late, score) rho=-0.176, p=0.00e+00
+
+Sellers total: 2,965; with >= 30 delivered orders: 623
+Seller late-rate quantiles (sellers with >=30 orders):
+0.10    0.020
+0.25    0.035
+0.50    0.065
+0.75    0.102
+0.90    0.144
+0.99    0.256
+Name: late_rate, dtype: float64
+Share of sellers with late rate >10%: 27.1%
+Share of sellers with late rate >20%: 2.9%
+Sellers significantly above platform rate: 75
+
+Worst 10 sellers (>=30 orders):
+                                  orders  late_rate  ...  avg_score  seller_state
+seller_id                                            ...                         
+ede0c03645598cdfc63ca8237acbe73d      42      0.333  ...      3.571            SP
+ad781527c93d00d89a11eecd9dcad7c1      38      0.316  ...      3.342            SP
+835f0f7810c76831d6c7d24c7a646d4d      42      0.310  ...      3.357            SP
+54965bbe3e4f07ae045b90b0b8541f52      69      0.290  ...      3.145            PR
+66e0557ecc2b4dbea057e93f215f68d8      30      0.267  ...      4.033            SP
+a49928bcdf77c55c6d6e05e09a9b4ca5      96      0.260  ...      3.031            SP
+ef990a83bbea832f36ebe81376335aa8      43      0.256  ...      3.628            SC
+2a1348e9addc1af5aaa619b1a3679d6b      47      0.255  ...      3.170            MG
+beadbee30901a7f61d031b6b686095ad      64      0.250  ...      3.906            SP
+71039d19d4303bf9054d69e9a9236699      35      0.229  ...      3.800            SP
+
+[10 rows x 6 columns] 
+
+Median seller late rate by seller state (>=5 sellers):
+               sellers  median_late_rate
+seller_state                           
+RJ                 29             0.091
+SP                403             0.077
+DF                  8             0.056
+MG                 66             0.048
+PR                 58             0.046
+SC                 29             0.044
+GO                  5             0.035
+RS                 15             0.023 
+
+Seller-level Spearman(late_rate, avg_score) = -0.453, p=7.49e-33

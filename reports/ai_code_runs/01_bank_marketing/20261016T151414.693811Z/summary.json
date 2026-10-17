@@ -1,0 +1,12 @@
+{
+  "case": "01_bank_marketing",
+  "original": {
+    "attempt": 1,
+    "exit_code": 0,
+    "timed_out": false,
+    "timeout_seconds": 300,
+    "workspace": "reports/ai_code_runs/01_bank_marketing/20261016T151414.693811Z/attempt-1"
+  },
+  "repair": null,
+  "finding": null
+}

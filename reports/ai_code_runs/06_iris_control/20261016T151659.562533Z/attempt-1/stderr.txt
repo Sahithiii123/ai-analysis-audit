@@ -1,0 +1,10 @@
+mkdir -p failed for path /home/runner/.config/matplotlib: [Errno 30] Read-only file system: '/home/runner/.config'
+Matplotlib created a temporary cache directory at /tmp/matplotlib-4e1w_f4z because there was an issue with the default path (/home/runner/.config/matplotlib); it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+/workspace/pasted_code.py:99: MatplotlibDeprecationWarning: The 'labels' parameter of boxplot() has been renamed 'tick_labels' since Matplotlib 3.9; support for the old name will be dropped in 3.11.
+  ax.boxplot(data, labels=[s.replace("Iris-", "") for s in species])
+/workspace/pasted_code.py:99: MatplotlibDeprecationWarning: The 'labels' parameter of boxplot() has been renamed 'tick_labels' since Matplotlib 3.9; support for the old name will be dropped in 3.11.
+  ax.boxplot(data, labels=[s.replace("Iris-", "") for s in species])
+/workspace/pasted_code.py:99: MatplotlibDeprecationWarning: The 'labels' parameter of boxplot() has been renamed 'tick_labels' since Matplotlib 3.9; support for the old name will be dropped in 3.11.
+  ax.boxplot(data, labels=[s.replace("Iris-", "") for s in species])
+/workspace/pasted_code.py:99: MatplotlibDeprecationWarning: The 'labels' parameter of boxplot() has been renamed 'tick_labels' since Matplotlib 3.9; support for the old name will be dropped in 3.11.
+  ax.boxplot(data, labels=[s.replace("Iris-", "") for s in species])

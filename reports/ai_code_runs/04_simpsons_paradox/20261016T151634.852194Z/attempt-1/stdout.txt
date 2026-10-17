@@ -1,0 +1,33 @@
+=== Overall admission rate by gender ===
+Admit   Admitted  Applicants   Rate
+Gender                             
+Female       557        1835  0.304
+Male        1198        2691  0.445 
+
+=== Admission rate by dept and gender ===
+Gender  Female   Male  Female_minus_Male
+Dept                                    
+A        0.824  0.621              0.203
+B        0.680  0.630              0.050
+C        0.341  0.369             -0.029
+D        0.349  0.331              0.018
+E        0.239  0.277             -0.038
+F        0.070  0.059              0.011 
+
+=== Dept overall rate and application share by gender ===
+      Dept_Rate  Female_application_share  Male_application_share
+Dept                                                             
+A         0.644                     0.059                   0.307
+B         0.632                     0.014                   0.208
+C         0.351                     0.323                   0.121
+D         0.340                     0.204                   0.155
+E         0.252                     0.214                   0.071
+F         0.064                     0.186                   0.139 
+
+=== Dept-mix-adjusted admission rate (weights = all applicants) ===
+Gender
+Female    0.430
+Male      0.387
+dtype: float64
+
+Adjusted gap (F - M): 0.043

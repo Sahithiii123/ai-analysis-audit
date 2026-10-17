@@ -1,0 +1,518 @@
+{
+  "schema_version": 1,
+  "case_id": "01_bank_marketing",
+  "question": "Build a model to predict which customers will subscribe to a term deposit and tell me how good it is.",
+  "reference_status": "complete",
+  "reference_results": {
+    "case": "01_bank_marketing",
+    "question": "Build a model to predict which customers will subscribe to a term deposit and tell me how good it is.",
+    "method": "Stratified 80/20 holdout; preprocessing fit within a logistic-regression pipeline; duration excluded because it is recorded during/after the call; no class reweighting.",
+    "n_total": 45211,
+    "n_train": 36168,
+    "n_test": 9043,
+    "positive_prevalence_test": 0.11699657193409267,
+    "test_metrics": {
+      "n": 9043,
+      "positive_count": 1058,
+      "prevalence": 0.11699657193409267,
+      "average_precision": 0.39617085330896507,
+      "pr_auc_average_precision": 0.39617085330896507,
+      "average_precision_prevalence_baseline": 0.11699657193409267,
+      "roc_auc": 0.7512286150899666,
+      "accuracy": 0.8937299568727193,
+      "majority_class_baseline_accuracy": 0.8830034280659074
+    },
+    "intervals": {
+      "average_precision_ci_95": [
+        0.3637977710492277,
+        0.43027400166882096
+      ],
+      "roc_auc_ci_95": [
+        0.7332057739655022,
+        0.7672013105799766
+      ]
+    },
+    "limitations": [
+      "The random holdout estimates performance for records from this dataset, not future campaigns or a new institution.",
+      "Threshold-specific utility and deployment costs were not supplied.",
+      "Predictive associations do not identify effects of changing customer contact or product policy."
+    ]
+  },
+  "source_sha256": {
+    "data\\raw\\01_bank_marketing\\data.csv": "94a5cb4b7d461dab12f7f6123723054911fbdd28d84a2c4ec92378af019be686"
+  },
+  "ai_audit_status": "complete",
+  "ai_audit_verdict": "Partly reliable",
+  "audit_findings": [
+    {
+      "finding_type": "Source-order performance",
+      "severity": "Major",
+      "ai_output_location": "Random 60/20/20 split and final test metrics",
+      "measured_effect": "The source-order holdout's ROC-AUC is -0.135 lower than the random-holdout result (95% CI -0.153 to -0.117). The PR-AUC difference is -0.019 (95% CI -0.054 to 0.022), which includes zero.",
+      "effect_estimate": -0.13459502332031847,
+      "ci_95": [
+        -0.15295188404159277,
+        -0.11683134479634055
+      ],
+      "corrected_effect": {
+        "source_order_model_selected": "logistic regression",
+        "source_order_roc_auc": 0.6680879964722272,
+        "source_order_pr_auc": 0.44136623130356173,
+        "source_order_test_prevalence": 0.31582439455932765,
+        "source_order_calibration_slope": 0.33170242456993,
+        "pr_auc_difference_source_order_minus_random": -0.01895594910964038,
+        "pr_auc_difference_ci_95": [
+          -0.05367718981240274,
+          0.021691953185667953
+        ],
+        "chronology_verified": false
+      },
+      "notebook_cell": "audit_evidence.ipynb code cell 2"
+    }
+  ],
+  "corrected_results": {
+    "independent_audit": {
+      "random_split": {
+        "model_selected": "gradient boosting",
+        "validation_results": {
+          "baseline (always 'no')": {
+            "roc_auc": 0.5,
+            "pr_auc": 0.11700951117009512
+          },
+          "logistic regression": {
+            "roc_auc": 0.7698731584151289,
+            "pr_auc": 0.4083618356997158
+          },
+          "gradient boosting": {
+            "roc_auc": 0.8040307931553088,
+            "pr_auc": 0.4752437452848775
+          }
+        },
+        "threshold_selected_on_validation": 0.1956613856600986,
+        "validation_best_f1": 0.5057667658437901,
+        "test_metrics": {
+          "n": 9043,
+          "prevalence": 0.11699657193409267,
+          "roc_auc": 0.8026830197925456,
+          "pr_auc": 0.4603221804132021,
+          "brier_score": 0.08076624790335,
+          "threshold": 0.1956613856600986,
+          "accuracy": 0.8737144752847507,
+          "precision": 0.4652892561983471,
+          "recall": 0.5321361058601134,
+          "f1": 0.4964726631393298,
+          "confusion_matrix": [
+            [
+              7338,
+              647
+            ],
+            [
+              495,
+              563
+            ]
+          ]
+        },
+        "test_model_baseline": {
+          "prevalence_pr_auc": 0.11699657193409267,
+          "always_negative_accuracy": 0.8830034280659074
+        },
+        "test_calibration": {
+          "brier_score": 0.08076624790335,
+          "calibration_intercept": 0.13758259867532913,
+          "calibration_slope": 1.0779866630931096,
+          "expected_calibration_error_deciles": 0.01007229187269652,
+          "decile_summary": [
+            {
+              "n": 905,
+              "mean_predicted": 0.02787048895900599,
+              "observed_rate": 0.02430939226519337
+            },
+            {
+              "n": 904,
+              "mean_predicted": 0.03645009224481929,
+              "observed_rate": 0.03650442477876106
+            },
+            {
+              "n": 904,
+              "mean_predicted": 0.04409277267418559,
+              "observed_rate": 0.03982300884955752
+            },
+            {
+              "n": 905,
+              "mean_predicted": 0.052180544003075105,
+              "observed_rate": 0.04861878453038674
+            },
+            {
+              "n": 904,
+              "mean_predicted": 0.06079359421386583,
+              "observed_rate": 0.04756637168141593
+            },
+            {
+              "n": 904,
+              "mean_predicted": 0.07123671330409237,
+              "observed_rate": 0.06084070796460177
+            },
+            {
+              "n": 904,
+              "mean_predicted": 0.08542893508502648,
+              "observed_rate": 0.07190265486725664
+            },
+            {
+              "n": 904,
+              "mean_predicted": 0.10961267546943544,
+              "observed_rate": 0.11172566371681415
+            },
+            {
+              "n": 904,
+              "mean_predicted": 0.18353107962523038,
+              "observed_rate": 0.21238938053097345
+            },
+            {
+              "n": 905,
+              "mean_predicted": 0.4948647881122167,
+              "observed_rate": 0.5160220994475138
+            }
+          ]
+        },
+        "test_roc_auc_ci_95": [
+          0.7879364706769122,
+          0.817683855698305
+        ],
+        "test_pr_auc_ci_95": [
+          0.4283795504318602,
+          0.49460166887438567
+        ],
+        "test_brier_ci_95": [
+          0.07638633591264687,
+          0.08526727727901415
+        ],
+        "top_20_percent": {
+          "share_subscribed": 0.3644911504424779,
+          "lift_over_test_prevalence": 3.1154002584606117
+        },
+        "train_rows": 27126,
+        "validation_rows": 9042,
+        "test_rows": 9043
+      },
+      "source_order_split": {
+        "model_selected": "logistic regression",
+        "validation_results": {
+          "baseline (always 'no')": {
+            "roc_auc": 0.5,
+            "pr_auc": 0.11789427117894272
+          },
+          "logistic regression": {
+            "roc_auc": 0.6213716195490787,
+            "pr_auc": 0.1627432190432953
+          },
+          "gradient boosting": {
+            "roc_auc": 0.5870718981522428,
+            "pr_auc": 0.14838871828816552
+          }
+        },
+        "threshold_selected_on_validation": 0.5084087728547577,
+        "validation_best_f1": 0.2569885638864322,
+        "test_metrics": {
+          "n": 9043,
+          "prevalence": 0.31582439455932765,
+          "roc_auc": 0.6680879964722272,
+          "pr_auc": 0.44136623130356173,
+          "brier_score": 0.23609112819187963,
+          "threshold": 0.5084087728547577,
+          "accuracy": 0.6634966272254783,
+          "precision": 0.47313990232691755,
+          "recall": 0.5766806722689075,
+          "f1": 0.5198043238125296,
+          "confusion_matrix": [
+            [
+              4353,
+              1834
+            ],
+            [
+              1209,
+              1647
+            ]
+          ]
+        },
+        "test_model_baseline": {
+          "prevalence_pr_auc": 0.31582439455932765,
+          "always_negative_accuracy": 0.6841756054406724
+        },
+        "test_calibration": {
+          "brier_score": 0.23609112819187963,
+          "calibration_intercept": -0.7274283792778735,
+          "calibration_slope": 0.33170242456993,
+          "expected_calibration_error_deciles": 0.15891851361126993,
+          "decile_summary": [
+            {
+              "n": 905,
+              "mean_predicted": 0.05377036504101133,
+              "observed_rate": 0.13370165745856355
+            },
+            {
+              "n": 904,
+              "mean_predicted": 0.15370484245269112,
+              "observed_rate": 0.20353982300884957
+            },
+            {
+              "n": 904,
+              "mean_predicted": 0.2943120564162203,
+              "observed_rate": 0.20907079646017698
+            },
+            {
+              "n": 904,
+              "mean_predicted": 0.3624738738541788,
+              "observed_rate": 0.19358407079646017
+            },
+            {
+              "n": 905,
+              "mean_predicted": 0.4180150364170382,
+              "observed_rate": 0.2541436464088398
+            },
+            {
+              "n": 904,
+              "mean_predicted": 0.4678298734893242,
+              "observed_rate": 0.2831858407079646
+            },
+            {
+              "n": 904,
+              "mean_predicted": 0.5324648146038239,
+              "observed_rate": 0.4336283185840708
+            },
+            {
+              "n": 904,
+              "mean_predicted": 0.6074757313639185,
+              "observed_rate": 0.4413716814159292
+            },
+            {
+              "n": 904,
+              "mean_predicted": 0.6924926345843418,
+              "observed_rate": 0.547566371681416
+            },
+            {
+              "n": 905,
+              "mean_predicted": 0.9052326925422856,
+              "observed_rate": 0.4585635359116022
+            }
+          ]
+        },
+        "test_roc_auc_ci_95": [
+          0.6556045511991022,
+          0.6782869321653651
+        ],
+        "test_pr_auc_ci_95": [
+          0.42477817424590225,
+          0.4595034482448052
+        ],
+        "test_brier_ci_95": [
+          0.23121590122987917,
+          0.24060817272989643
+        ],
+        "top_20_percent": {
+          "share_subscribed": 0.5027654867256637,
+          "lift_over_test_prevalence": 1.5919146696289135
+        },
+        "train_rows": 27126,
+        "validation_rows": 9042,
+        "test_rows": 9043
+      },
+      "source_order_split_definition": {
+        "train_fraction": 0.6,
+        "validation_fraction": 0.2,
+        "test_fraction": 0.2,
+        "source_month_block_transitions": 29,
+        "year_or_full_timestamp_column_available": false,
+        "interpretation": "Source row order is a temporal proxy. The raw file is grouped into contiguous month blocks but has no year or full timestamp, so exact calendar chronology is unverified."
+      },
+      "test_split_gaps_source_order_minus_random": {
+        "roc_auc": {
+          "difference": -0.13459502332031847,
+          "ci_95": [
+            -0.15295188404159277,
+            -0.11683134479634055
+          ]
+        },
+        "pr_auc": {
+          "difference": -0.01895594910964038,
+          "ci_95": [
+            -0.05367718981240274,
+            0.021691953185667953
+          ]
+        }
+      },
+      "source_order_feature_ablations": {
+        "campaign": {
+          "reduced_test_pr_auc": 0.4409182314027356,
+          "reduced_test_roc_auc": 0.666469383939126,
+          "pr_auc_difference_reduced_minus_full": -0.00044799990082611263,
+          "pr_auc_difference_ci_95": [
+            -0.0010967728964490873,
+            0.00017256786830165393
+          ],
+          "roc_auc_difference_reduced_minus_full": -0.001618612533101138,
+          "roc_auc_difference_ci_95": [
+            -0.0021574750823626365,
+            -0.001064563199489524
+          ]
+        },
+        "pdays and previous-contact flag": {
+          "reduced_test_pr_auc": 0.45841720876274117,
+          "reduced_test_roc_auc": 0.6930017602644742,
+          "pr_auc_difference_reduced_minus_full": 0.01705097745917944,
+          "pr_auc_difference_ci_95": [
+            0.011502025715025102,
+            0.023008659409482688
+          ],
+          "roc_auc_difference_reduced_minus_full": 0.02491376379224708,
+          "roc_auc_difference_ci_95": [
+            0.018820592790934735,
+            0.031737681837158714
+          ]
+        },
+        "previous campaign outcome": {
+          "reduced_test_pr_auc": 0.4085631552551201,
+          "reduced_test_roc_auc": 0.6359799213042255,
+          "pr_auc_difference_reduced_minus_full": -0.032803076048441626,
+          "pr_auc_difference_ci_95": [
+            -0.038058407925468773,
+            -0.028146568794326546
+          ],
+          "roc_auc_difference_reduced_minus_full": -0.032108075168001626,
+          "roc_auc_difference_ci_95": [
+            -0.03667616855119906,
+            -0.02790744925932033
+          ]
+        },
+        "current campaign month": {
+          "reduced_test_pr_auc": 0.44197247084765245,
+          "reduced_test_roc_auc": 0.622434871799051,
+          "pr_auc_difference_reduced_minus_full": 0.0006062395440907253,
+          "pr_auc_difference_ci_95": [
+            -0.013250830615314098,
+            0.015206170487334183
+          ],
+          "roc_auc_difference_reduced_minus_full": -0.04565312467317617,
+          "roc_auc_difference_ci_95": [
+            -0.05426897662856878,
+            -0.036673492264819293
+          ]
+        }
+      },
+      "data_and_feature_checks": {
+        "n_total": 45211,
+        "positive_prevalence": 0.11698480458295547,
+        "duration_in_model_features": false,
+        "duration_columns_in_features": false,
+        "campaign_current_contact_risk": "campaign counts current-campaign contacts including the last contact; it may not be available before choosing a call.",
+        "prior_campaign_fields": [
+          "pdays",
+          "previous",
+          "poutcome"
+        ],
+        "current_campaign_time_fields": [
+          "month",
+          "day_of_week"
+        ],
+        "threshold_is_selected_on_validation": true,
+        "test_used_to_select_model_or_threshold": false
+      }
+    },
+    "ai_output_verified": {
+      "saved_run_exit_code": 0,
+      "repair_applied": false,
+      "random_split_rows_reproduced": true,
+      "random_split_roc_auc_reproduced": true,
+      "random_split_pr_auc_reproduced": true,
+      "validation_selected_threshold_reproduced": true
+    },
+    "corrected_analysis": {
+      "recommended_evaluation": "Use a genuinely timestamped forward holdout when deployment is intended for later campaigns; source-row order is only a stress test.",
+      "source_order_holdout": {
+        "train_fraction": 0.6,
+        "validation_fraction": 0.2,
+        "test_fraction": 0.2,
+        "test_metrics": {
+          "n": 9043,
+          "prevalence": 0.31582439455932765,
+          "roc_auc": 0.6680879964722272,
+          "pr_auc": 0.44136623130356173,
+          "brier_score": 0.23609112819187963,
+          "threshold": 0.5084087728547577,
+          "accuracy": 0.6634966272254783,
+          "precision": 0.47313990232691755,
+          "recall": 0.5766806722689075,
+          "f1": 0.5198043238125296,
+          "confusion_matrix": [
+            [
+              4353,
+              1834
+            ],
+            [
+              1209,
+              1647
+            ]
+          ]
+        },
+        "calibration": {
+          "brier_score": 0.23609112819187963,
+          "calibration_intercept": -0.7274283792778735,
+          "calibration_slope": 0.33170242456993,
+          "expected_calibration_error_deciles": 0.15891851361126993,
+          "decile_summary": [
+            {
+              "n": 905,
+              "mean_predicted": 0.05377036504101133,
+              "observed_rate": 0.13370165745856355
+            },
+            {
+              "n": 904,
+              "mean_predicted": 0.15370484245269112,
+              "observed_rate": 0.20353982300884957
+            },
+            {
+              "n": 904,
+              "mean_predicted": 0.2943120564162203,
+              "observed_rate": 0.20907079646017698
+            },
+            {
+              "n": 904,
+              "mean_predicted": 0.3624738738541788,
+              "observed_rate": 0.19358407079646017
+            },
+            {
+              "n": 905,
+              "mean_predicted": 0.4180150364170382,
+              "observed_rate": 0.2541436464088398
+            },
+            {
+              "n": 904,
+              "mean_predicted": 0.4678298734893242,
+              "observed_rate": 0.2831858407079646
+            },
+            {
+              "n": 904,
+              "mean_predicted": 0.5324648146038239,
+              "observed_rate": 0.4336283185840708
+            },
+            {
+              "n": 904,
+              "mean_predicted": 0.6074757313639185,
+              "observed_rate": 0.4413716814159292
+            },
+            {
+              "n": 904,
+              "mean_predicted": 0.6924926345843418,
+              "observed_rate": 0.547566371681416
+            },
+            {
+              "n": 905,
+              "mean_predicted": 0.9052326925422856,
+              "observed_rate": 0.4585635359116022
+            }
+          ]
+        }
+      }
+    }
+  },
+  "generated_at_utc": "2026-10-16T12:08:02+00:00"
+}

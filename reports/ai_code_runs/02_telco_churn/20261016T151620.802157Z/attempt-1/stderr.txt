@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "/workspace/launcher.py", line 9, in <module>
+    runpy.run_path(str(workspace / 'pasted_code.py'), run_name='__main__')
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen runpy>", line 294, in run_path
+  File "<frozen runpy>", line 98, in _run_module_code
+  File "<frozen runpy>", line 88, in _run_code
+  File "/workspace/pasted_code.py", line 9, in <module>
+    raw, _ = arff.loadarff("data/raw/02_telco_churn/telco-customer-churn.arff")
+             ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.14/site-packages/scipy/io/arff/_arffread.py", line 804, in loadarff
+    return _loadarff(ofile)
+  File "/usr/local/lib/python3.14/site-packages/scipy/io/arff/_arffread.py", line 837, in _loadarff
+    raise NotImplementedError("String attributes not supported yet, sorry")
+NotImplementedError: String attributes not supported yet, sorry
+mkdir -p failed for path /home/runner/.config/matplotlib: [Errno 30] Read-only file system: '/home/runner/.config'
+Matplotlib created a temporary cache directory at /tmp/matplotlib-7te044cd because there was an issue with the default path (/home/runner/.config/matplotlib); it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.

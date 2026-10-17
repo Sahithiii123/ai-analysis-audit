@@ -1,0 +1,318 @@
+{
+  "schema_version": 1,
+  "case_id": "04_simpsons_paradox",
+  "question": "How do admission rates differ by applicant gender overall and within departments in the 1973 Berkeley data?",
+  "reference_status": "complete",
+  "reference_results": {
+    "case": "04_simpsons_paradox",
+    "question": "How do admission rates differ by applicant gender overall and within departments in the 1973 Berkeley data?",
+    "method": "Reconstruct applicant counts from the 24-cell contingency table; Wilson intervals for gender and department rates; Cochran-Mantel-Haenszel common odds ratio across departments.",
+    "n_applicants": 4526,
+    "overall_rates": {
+      "Female": {
+        "successes": 557,
+        "n": 1835,
+        "rate": 0.30354223433242505,
+        "ci_95_lower": 0.2829334703442218,
+        "ci_95_upper": 0.32497182429580684
+      },
+      "Male": {
+        "successes": 1198,
+        "n": 2691,
+        "rate": 0.4451876625789669,
+        "ci_95_lower": 0.426501605097548,
+        "ci_95_upper": 0.4640299885016179
+      }
+    },
+    "department_rates": [
+      {
+        "department": "A",
+        "gender": "Female",
+        "successes": 89,
+        "n": 108,
+        "rate": 0.8240740740740741,
+        "ci_95_lower": 0.7415045937948218,
+        "ci_95_upper": 0.8843813767398171
+      },
+      {
+        "department": "A",
+        "gender": "Male",
+        "successes": 512,
+        "n": 825,
+        "rate": 0.6206060606060606,
+        "ci_95_lower": 0.5870080205830691,
+        "ci_95_upper": 0.6530861468625898
+      },
+      {
+        "department": "B",
+        "gender": "Female",
+        "successes": 17,
+        "n": 25,
+        "rate": 0.68,
+        "ci_95_lower": 0.48410269273102247,
+        "ci_95_upper": 0.8279480969309202
+      },
+      {
+        "department": "B",
+        "gender": "Male",
+        "successes": 353,
+        "n": 560,
+        "rate": 0.6303571428571428,
+        "ci_95_lower": 0.5896159323570673,
+        "ci_95_upper": 0.6693221037096084
+      },
+      {
+        "department": "C",
+        "gender": "Female",
+        "successes": 202,
+        "n": 593,
+        "rate": 0.3406408094435076,
+        "ci_95_lower": 0.30363127475206064,
+        "ci_95_upper": 0.3797017155977598
+      },
+      {
+        "department": "C",
+        "gender": "Male",
+        "successes": 120,
+        "n": 325,
+        "rate": 0.36923076923076925,
+        "ci_95_lower": 0.318575853452968,
+        "ci_95_upper": 0.4229409239484254
+      },
+      {
+        "department": "D",
+        "gender": "Female",
+        "successes": 131,
+        "n": 375,
+        "rate": 0.34933333333333333,
+        "ci_95_lower": 0.3028282382961011,
+        "ci_95_upper": 0.3988939534836456
+      },
+      {
+        "department": "D",
+        "gender": "Male",
+        "successes": 138,
+        "n": 417,
+        "rate": 0.33093525179856115,
+        "ci_95_lower": 0.28749530285276714,
+        "ci_95_upper": 0.37746166123741953
+      },
+      {
+        "department": "E",
+        "gender": "Female",
+        "successes": 94,
+        "n": 393,
+        "rate": 0.23918575063613232,
+        "ci_95_lower": 0.19966385581747362,
+        "ci_95_upper": 0.2837570533556638
+      },
+      {
+        "department": "E",
+        "gender": "Male",
+        "successes": 53,
+        "n": 191,
+        "rate": 0.2774869109947644,
+        "ci_95_lower": 0.21884989928086154,
+        "ci_95_upper": 0.344897978021666
+      },
+      {
+        "department": "F",
+        "gender": "Female",
+        "successes": 24,
+        "n": 341,
+        "rate": 0.07038123167155426,
+        "ci_95_lower": 0.0477489412778779,
+        "ci_95_upper": 0.10258524127077537
+      },
+      {
+        "department": "F",
+        "gender": "Male",
+        "successes": 22,
+        "n": 373,
+        "rate": 0.058981233243967826,
+        "ci_95_lower": 0.03926959742404105,
+        "ci_95_upper": 0.08768421219768024
+      }
+    ],
+    "cmh": {
+      "female_vs_male_common_odds_ratio": 1.1053426615022164,
+      "odds_ratio_ci_95": [
+        0.9431028285160811,
+        1.2954922436816447
+      ],
+      "test_statistic": 1.5246066604434427,
+      "p_value": 0.21692369705551717
+    },
+    "limitations": [
+      "The data are aggregated counts from one institution and one admissions cycle.",
+      "Department-level comparisons are descriptive; applicant qualifications and application choices are not represented in the table.",
+      "Neither the marginal nor stratified association identifies discrimination or a causal mechanism."
+    ]
+  },
+  "source_sha256": {
+    "data\\raw\\04_simpsons_paradox\\UCBAdmissions.csv": "92ae5a362fd3a09847ee388823286381b847b48fd1c9a1eca387c987a1b5eba3"
+  },
+  "ai_audit_status": "complete",
+  "ai_audit_verdict": "Partly reliable",
+  "audit_findings": [
+    {
+      "finding_type": "Standardized-gap framing",
+      "severity": "Minor",
+      "ai_output_location": "Written conclusion, department-mix-adjusted rates",
+      "measured_effect": "The reproduced common-mix difference is 4.3 percentage points favoring women (95% fixed-weight Wald interval 0.7 to 7.9); the overall female-minus-male gap is -14.2 points. This is a substantial reduction and reversal, but the interval is not centered near zero and excludes zero under the stated model.",
+      "effect_estimate": 0.04263679777130297,
+      "ci_95": [
+        0.006758547441065209,
+        0.07851504810154072
+      ],
+      "corrected_effect": {
+        "overall_female_minus_male_difference": -0.14164542824654186,
+        "standardized_female_rate": 0.4299553804607252,
+        "standardized_male_rate": 0.3873185826894222,
+        "composition_shift": 0.18428222601784483,
+        "interval_assumption": "Independent binomial applicant outcomes with pooled department weights held fixed; inference is not needed for the finite 1973 applicant table."
+      },
+      "notebook_cell": "audit_evidence.ipynb code cell 1"
+    }
+  ],
+  "corrected_results": {
+    "independent_audit": {
+      "saved_ai_run": {
+        "run_record": "reports/ai_code_runs/04_simpsons_paradox/20261016T151634.852194Z/attempt-1/run.json",
+        "exit_code": 0,
+        "stdout_bytes": 1298,
+        "stderr_has_exception": false,
+        "reported_standardized_gap_present": true
+      },
+      "n_applicants": 4526,
+      "overall_rates": {
+        "Female": {
+          "admitted": 557,
+          "applicants": 1835,
+          "rate": 0.30354223433242505,
+          "ci_95": [
+            0.2829334703442218,
+            0.32497182429580684
+          ]
+        },
+        "Male": {
+          "admitted": 1198,
+          "applicants": 2691,
+          "rate": 0.4451876625789669,
+          "ci_95": [
+            0.426501605097548,
+            0.4640299885016179
+          ]
+        }
+      },
+      "overall_female_minus_male_difference": -0.14164542824654186,
+      "overall_difference_ci_95_wald": [
+        -0.16984440916471552,
+        -0.1134464473283682
+      ],
+      "department_summary": [
+        {
+          "department": "A",
+          "female_rate": 0.8240740740740741,
+          "male_rate": 0.6206060606060606,
+          "female_minus_male_difference": 0.20346801346801346,
+          "overall_department_rate": 0.6441586280814576,
+          "female_application_share": 0.05885558583106267,
+          "male_application_share": 0.30657748049052397
+        },
+        {
+          "department": "B",
+          "female_rate": 0.68,
+          "male_rate": 0.6303571428571428,
+          "female_minus_male_difference": 0.04964285714285721,
+          "overall_department_rate": 0.6324786324786325,
+          "female_application_share": 0.013623978201634877,
+          "male_application_share": 0.20810107766629507
+        },
+        {
+          "department": "C",
+          "female_rate": 0.3406408094435076,
+          "male_rate": 0.36923076923076925,
+          "female_minus_male_difference": -0.028589959787261643,
+          "overall_department_rate": 0.35076252723311546,
+          "female_application_share": 0.3231607629427793,
+          "male_application_share": 0.12077294685990338
+        },
+        {
+          "department": "D",
+          "female_rate": 0.34933333333333333,
+          "male_rate": 0.33093525179856115,
+          "female_minus_male_difference": 0.01839808153477218,
+          "overall_department_rate": 0.33964646464646464,
+          "female_application_share": 0.20435967302452315,
+          "male_application_share": 0.15496098104793757
+        },
+        {
+          "department": "E",
+          "female_rate": 0.23918575063613232,
+          "male_rate": 0.2774869109947644,
+          "female_minus_male_difference": -0.0383011603586321,
+          "overall_department_rate": 0.2517123287671233,
+          "female_application_share": 0.21416893732970027,
+          "male_application_share": 0.07097733184689707
+        },
+        {
+          "department": "F",
+          "female_rate": 0.07038123167155426,
+          "male_rate": 0.058981233243967826,
+          "female_minus_male_difference": 0.011399998427586433,
+          "overall_department_rate": 0.06442577030812324,
+          "female_application_share": 0.18583106267029972,
+          "male_application_share": 0.13861018208844295
+        }
+      ],
+      "standardized": {
+        "department_weights": {
+          "A": 0.20614228899690676,
+          "B": 0.12925320371188687,
+          "C": 0.20282810428634557,
+          "D": 0.17498895271763146,
+          "E": 0.12903225806451613,
+          "F": 0.15775519222271323
+        },
+        "rates": {
+          "Female": 0.4299553804607252,
+          "Male": 0.3873185826894222
+        },
+        "female_minus_male_difference": 0.04263679777130297,
+        "standard_error_fixed_weights": 0.01830522976032539,
+        "ci_95_fixed_weights": [
+          0.006758547441065209,
+          0.07851504810154072
+        ],
+        "composition_shift_from_overall_gap": 0.18428222601784483
+      },
+      "reference_cmh": {
+        "female_vs_male_common_odds_ratio": 1.1053426615022164,
+        "odds_ratio_ci_95": [
+          0.9431028285160811,
+          1.2954922436816447
+        ],
+        "test_statistic": 1.5246066604434427,
+        "p_value": 0.21692369705551717
+      }
+    },
+    "reference_comparison": {
+      "female_vs_male_common_odds_ratio": 1.1053426615022164,
+      "odds_ratio_ci_95": [
+        0.9431028285160811,
+        1.2954922436816447
+      ],
+      "test_statistic": 1.5246066604434427,
+      "p_value": 0.21692369705551717
+    },
+    "ai_output_verified": {
+      "saved_run_exit_code": 0,
+      "saved_output_contains_reproduced_standardized_gap": true,
+      "headline_counts_reproduced": true,
+      "aggregate_and_department_rates_reproduced": true
+    },
+    "causal_conclusion": "The counts decompose the marginal gap by department mix, but do not establish that department choice caused the gap or that admissions decisions were free of discrimination."
+  },
+  "generated_at_utc": "2026-10-16T12:08:02+00:00"
+}

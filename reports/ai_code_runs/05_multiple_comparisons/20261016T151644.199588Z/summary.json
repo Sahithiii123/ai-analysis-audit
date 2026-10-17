@@ -1,0 +1,12 @@
+{
+  "case": "05_multiple_comparisons",
+  "original": {
+    "attempt": 1,
+    "exit_code": 0,
+    "timed_out": false,
+    "timeout_seconds": 300,
+    "workspace": "reports/ai_code_runs/05_multiple_comparisons/20261016T151644.199588Z/attempt-1"
+  },
+  "repair": null,
+  "finding": null
+}

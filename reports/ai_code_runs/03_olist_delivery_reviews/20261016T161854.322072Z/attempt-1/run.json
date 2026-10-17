@@ -1,0 +1,12 @@
+{
+  "case": "03_olist_delivery_reviews",
+  "attempt": 1,
+  "started_at_utc": "2026-10-16T16:18:54+00:00",
+  "timeout_seconds": 300,
+  "network": "none",
+  "sandbox_image": "ai-analysis-audit-sandbox:latest",
+  "exit_code": 0,
+  "timed_out": false,
+  "workspace": "reports/ai_code_runs/03_olist_delivery_reviews/20261016T161854.322072Z/attempt-1",
+  "finished_at_utc": "2026-10-16T16:19:06+00:00"
+}

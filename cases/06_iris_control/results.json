@@ -1,0 +1,740 @@
+{
+  "schema_version": 1,
+  "case_id": "06_iris_control",
+  "question": "For each iris species in this sample, summarize sepal and petal measurements with uncertainty intervals, compare the species descriptively, and state what these data do and do not support.",
+  "reference_status": "complete",
+  "reference_results": {
+    "case": "06_iris_control",
+    "question": "For each iris species in this sample, summarize sepal and petal measurements with uncertainty intervals, compare the species descriptively, and state what these data do and do not support.",
+    "method": "Species-specific means and 95% t intervals for four measurements; Kruskal-Wallis comparisons with Bonferroni and Benjamini-Hochberg adjustment across the four prespecified measurement tests.",
+    "n_total": 150,
+    "species_measurements": [
+      {
+        "species": "Iris-setosa",
+        "measurement": "sepal length",
+        "n": 50,
+        "mean_cm": 5.006,
+        "ci_95_lower_cm": 4.905823539299264,
+        "ci_95_upper_cm": 5.106176460700737
+      },
+      {
+        "species": "Iris-versicolor",
+        "measurement": "sepal length",
+        "n": 50,
+        "mean_cm": 5.936,
+        "ci_95_lower_cm": 5.789305783106826,
+        "ci_95_upper_cm": 6.082694216893174
+      },
+      {
+        "species": "Iris-virginica",
+        "measurement": "sepal length",
+        "n": 50,
+        "mean_cm": 6.587999999999998,
+        "ci_95_lower_cm": 6.407285019117501,
+        "ci_95_upper_cm": 6.768714980882495
+      },
+      {
+        "species": "Iris-setosa",
+        "measurement": "sepal width",
+        "n": 50,
+        "mean_cm": 3.418,
+        "ci_95_lower_cm": 3.3097140642341234,
+        "ci_95_upper_cm": 3.526285935765877
+      },
+      {
+        "species": "Iris-versicolor",
+        "measurement": "sepal width",
+        "n": 50,
+        "mean_cm": 2.7700000000000005,
+        "ci_95_lower_cm": 2.6808195032360236,
+        "ci_95_upper_cm": 2.8591804967639773
+      },
+      {
+        "species": "Iris-virginica",
+        "measurement": "sepal width",
+        "n": 50,
+        "mean_cm": 2.974,
+        "ci_95_lower_cm": 2.8823474695233924,
+        "ci_95_upper_cm": 3.065652530476608
+      },
+      {
+        "species": "Iris-setosa",
+        "measurement": "petal length",
+        "n": 50,
+        "mean_cm": 1.464,
+        "ci_95_lower_cm": 1.414688674094744,
+        "ci_95_upper_cm": 1.513311325905256
+      },
+      {
+        "species": "Iris-versicolor",
+        "measurement": "petal length",
+        "n": 50,
+        "mean_cm": 4.26,
+        "ci_95_lower_cm": 4.126452777905478,
+        "ci_95_upper_cm": 4.393547222094521
+      },
+      {
+        "species": "Iris-virginica",
+        "measurement": "petal length",
+        "n": 50,
+        "mean_cm": 5.5520000000000005,
+        "ci_95_lower_cm": 5.395153262927524,
+        "ci_95_upper_cm": 5.708846737072477
+      },
+      {
+        "species": "Iris-setosa",
+        "measurement": "petal width",
+        "n": 50,
+        "mean_cm": 0.244,
+        "ci_95_lower_cm": 0.21353139634492724,
+        "ci_95_upper_cm": 0.27446860365507275
+      },
+      {
+        "species": "Iris-versicolor",
+        "measurement": "petal width",
+        "n": 50,
+        "mean_cm": 1.3259999999999998,
+        "ci_95_lower_cm": 1.2697993101768552,
+        "ci_95_upper_cm": 1.3822006898231445
+      },
+      {
+        "species": "Iris-virginica",
+        "measurement": "petal width",
+        "n": 50,
+        "mean_cm": 2.0260000000000002,
+        "ci_95_lower_cm": 1.9479453178263322,
+        "ci_95_upper_cm": 2.1040546821736683
+      }
+    ],
+    "species_tests": [
+      {
+        "measurement": "sepal length",
+        "kruskal_statistic": 96.93743600064833,
+        "p_raw": 8.91873433246198e-22,
+        "p_bonferroni": 3.567493732984792e-21,
+        "p_bh": 1.1891645776615974e-21
+      },
+      {
+        "measurement": "sepal width",
+        "kruskal_statistic": 62.49463010053111,
+        "p_raw": 2.6882119006774528e-14,
+        "p_bonferroni": 1.0752847602709811e-13,
+        "p_bh": 2.6882119006774528e-14
+      },
+      {
+        "measurement": "petal length",
+        "kruskal_statistic": 130.41406912893967,
+        "p_raw": 4.7967237479455454e-29,
+        "p_bonferroni": 1.9186894991782182e-28,
+        "p_bh": 9.593447495891091e-29
+      },
+      {
+        "measurement": "petal width",
+        "kruskal_statistic": 131.09335318823713,
+        "p_raw": 3.415387999117524e-29,
+        "p_bonferroni": 1.3661551996470096e-28,
+        "p_bh": 9.593447495891091e-29
+      }
+    ],
+    "limitations": [
+      "Intervals quantify mean uncertainty under independent-sample assumptions; they are not prediction intervals for individual flowers.",
+      "The dataset is a small historical sample with limited provenance for a broader target population.",
+      "Species differences in these measurements are descriptive and do not establish biological mechanisms or causal effects."
+    ]
+  },
+  "source_sha256": {
+    "data\\raw\\06_iris_control\\data.csv": "daaeb5e3e889d07fbdd44544f5a39fe2372a07172e25899d577be0ad74df9e65"
+  },
+  "ai_audit_status": "complete",
+  "ai_audit_verdict": "Reliable",
+  "audit_findings": [],
+  "corrected_results": {
+    "independent_audit": {
+      "saved_ai_run": {
+        "run_record": "reports/ai_code_runs/06_iris_control/20261016T151659.562533Z/attempt-1/run.json",
+        "exit_code": 0,
+        "stdout_bytes": 3586,
+        "stderr_has_exception": false,
+        "shape_present": true,
+        "duplicate_count_present": true,
+        "summary_rows_present": true,
+        "plot_saved": true
+      },
+      "n_total": 150,
+      "species_counts": {
+        "Iris-setosa": 50,
+        "Iris-versicolor": 50,
+        "Iris-virginica": 50
+      },
+      "missing_values_by_column": {
+        "sepal length": 0,
+        "sepal width": 0,
+        "petal length": 0,
+        "petal width": 0,
+        "class": 0
+      },
+      "duplicate_rows": 3,
+      "nonpositive_measurement_rows": 0,
+      "summary_statistics": [
+        {
+          "species": "Iris-setosa",
+          "measurement": "sepal length",
+          "n": 50,
+          "mean_cm": 5.006,
+          "sd_cm": 0.35248968721345136,
+          "median_cm": 5.0,
+          "min_cm": 4.3,
+          "max_cm": 5.8,
+          "t_ci_95_cm": [
+            4.905823539299264,
+            5.106176460700737
+          ],
+          "bootstrap_ci_95_cm": [
+            4.908,
+            5.1
+          ]
+        },
+        {
+          "species": "Iris-setosa",
+          "measurement": "sepal width",
+          "n": 50,
+          "mean_cm": 3.418,
+          "sd_cm": 0.38102439795469095,
+          "median_cm": 3.4,
+          "min_cm": 2.3,
+          "max_cm": 4.4,
+          "t_ci_95_cm": [
+            3.3097140642341234,
+            3.526285935765877
+          ],
+          "bootstrap_ci_95_cm": [
+            3.3139999999999996,
+            3.522
+          ]
+        },
+        {
+          "species": "Iris-setosa",
+          "measurement": "petal length",
+          "n": 50,
+          "mean_cm": 1.464,
+          "sd_cm": 0.17351115943644546,
+          "median_cm": 1.5,
+          "min_cm": 1.0,
+          "max_cm": 1.9,
+          "t_ci_95_cm": [
+            1.414688674094744,
+            1.513311325905256
+          ],
+          "bootstrap_ci_95_cm": [
+            1.4160000000000001,
+            1.5119999999999998
+          ]
+        },
+        {
+          "species": "Iris-setosa",
+          "measurement": "petal width",
+          "n": 50,
+          "mean_cm": 0.244,
+          "sd_cm": 0.1072095030816784,
+          "median_cm": 0.2,
+          "min_cm": 0.1,
+          "max_cm": 0.6,
+          "t_ci_95_cm": [
+            0.21353139634492724,
+            0.27446860365507275
+          ],
+          "bootstrap_ci_95_cm": [
+            0.21599999999999997,
+            0.27399999999999997
+          ]
+        },
+        {
+          "species": "Iris-versicolor",
+          "measurement": "sepal length",
+          "n": 50,
+          "mean_cm": 5.936,
+          "sd_cm": 0.5161711470638634,
+          "median_cm": 5.9,
+          "min_cm": 4.9,
+          "max_cm": 7.0,
+          "t_ci_95_cm": [
+            5.789305783106826,
+            6.082694216893174
+          ],
+          "bootstrap_ci_95_cm": [
+            5.797999999999999,
+            6.078
+          ]
+        },
+        {
+          "species": "Iris-versicolor",
+          "measurement": "sepal width",
+          "n": 50,
+          "mean_cm": 2.7700000000000005,
+          "sd_cm": 0.3137983233784114,
+          "median_cm": 2.8,
+          "min_cm": 2.0,
+          "max_cm": 3.4,
+          "t_ci_95_cm": [
+            2.6808195032360236,
+            2.8591804967639773
+          ],
+          "bootstrap_ci_95_cm": [
+            2.6800000000000006,
+            2.8540000000000005
+          ]
+        },
+        {
+          "species": "Iris-versicolor",
+          "measurement": "petal length",
+          "n": 50,
+          "mean_cm": 4.26,
+          "sd_cm": 0.46991097723995795,
+          "median_cm": 4.35,
+          "min_cm": 3.0,
+          "max_cm": 5.1,
+          "t_ci_95_cm": [
+            4.126452777905478,
+            4.393547222094521
+          ],
+          "bootstrap_ci_95_cm": [
+            4.1240000000000006,
+            4.385999999999999
+          ]
+        },
+        {
+          "species": "Iris-versicolor",
+          "measurement": "petal width",
+          "n": 50,
+          "mean_cm": 1.3259999999999998,
+          "sd_cm": 0.19775268000454405,
+          "median_cm": 1.3,
+          "min_cm": 1.0,
+          "max_cm": 1.8,
+          "t_ci_95_cm": [
+            1.2697993101768552,
+            1.3822006898231445
+          ],
+          "bootstrap_ci_95_cm": [
+            1.274,
+            1.382
+          ]
+        },
+        {
+          "species": "Iris-virginica",
+          "measurement": "sepal length",
+          "n": 50,
+          "mean_cm": 6.587999999999998,
+          "sd_cm": 0.6358795932744322,
+          "median_cm": 6.5,
+          "min_cm": 4.9,
+          "max_cm": 7.9,
+          "t_ci_95_cm": [
+            6.407285019117501,
+            6.768714980882495
+          ],
+          "bootstrap_ci_95_cm": [
+            6.415949999999998,
+            6.766
+          ]
+        },
+        {
+          "species": "Iris-virginica",
+          "measurement": "sepal width",
+          "n": 50,
+          "mean_cm": 2.974,
+          "sd_cm": 0.32249663817263746,
+          "median_cm": 3.0,
+          "min_cm": 2.2,
+          "max_cm": 3.8,
+          "t_ci_95_cm": [
+            2.8823474695233924,
+            3.065652530476608
+          ],
+          "bootstrap_ci_95_cm": [
+            2.886,
+            3.0639999999999996
+          ]
+        },
+        {
+          "species": "Iris-virginica",
+          "measurement": "petal length",
+          "n": 50,
+          "mean_cm": 5.5520000000000005,
+          "sd_cm": 0.5518946956639834,
+          "median_cm": 5.55,
+          "min_cm": 4.5,
+          "max_cm": 6.9,
+          "t_ci_95_cm": [
+            5.395153262927524,
+            5.708846737072477
+          ],
+          "bootstrap_ci_95_cm": [
+            5.402,
+            5.706
+          ]
+        },
+        {
+          "species": "Iris-virginica",
+          "measurement": "petal width",
+          "n": 50,
+          "mean_cm": 2.0260000000000002,
+          "sd_cm": 0.2746500556366674,
+          "median_cm": 2.0,
+          "min_cm": 1.4,
+          "max_cm": 2.5,
+          "t_ci_95_cm": [
+            1.9479453178263322,
+            2.1040546821736683
+          ],
+          "bootstrap_ci_95_cm": [
+            1.9500000000000002,
+            2.102
+          ]
+        }
+      ],
+      "pairwise_comparisons": [
+        {
+          "measurement": "sepal length",
+          "first_species": "Iris-setosa",
+          "second_species": "Iris-versicolor",
+          "mean_difference_cm": -0.9299999999999997,
+          "bootstrap_ci_95_cm": [
+            -1.0980000000000008,
+            -0.758
+          ],
+          "cohens_d": -2.104197253509822
+        },
+        {
+          "measurement": "sepal length",
+          "first_species": "Iris-setosa",
+          "second_species": "Iris-virginica",
+          "mean_difference_cm": -1.581999999999998,
+          "bootstrap_ci_95_cm": [
+            -1.7879999999999985,
+            -1.3820000000000006
+          ],
+          "cohens_d": -3.077239164015881
+        },
+        {
+          "measurement": "sepal length",
+          "first_species": "Iris-versicolor",
+          "second_species": "Iris-virginica",
+          "mean_difference_cm": -0.6519999999999984,
+          "bootstrap_ci_95_cm": [
+            -0.8760000000000003,
+            -0.42799999999999994
+          ],
+          "cohens_d": -1.12583305194396
+        },
+        {
+          "measurement": "sepal width",
+          "first_species": "Iris-setosa",
+          "second_species": "Iris-versicolor",
+          "mean_difference_cm": 0.6479999999999997,
+          "bootstrap_ci_95_cm": [
+            0.516,
+            0.7800499999999999
+          ],
+          "cohens_d": 1.8565545111116222
+        },
+        {
+          "measurement": "sepal width",
+          "first_species": "Iris-setosa",
+          "second_species": "Iris-virginica",
+          "mean_difference_cm": 0.44399999999999995,
+          "bootstrap_ci_95_cm": [
+            0.30600000000000005,
+            0.5780000000000003
+          ],
+          "cohens_d": 1.2578769993344123
+        },
+        {
+          "measurement": "sepal width",
+          "first_species": "Iris-versicolor",
+          "second_species": "Iris-virginica",
+          "mean_difference_cm": -0.20399999999999974,
+          "bootstrap_ci_95_cm": [
+            -0.32799999999999985,
+            -0.07800000000000029
+          ],
+          "cohens_d": -0.6411521500443637
+        },
+        {
+          "measurement": "petal length",
+          "first_species": "Iris-setosa",
+          "second_species": "Iris-versicolor",
+          "mean_difference_cm": -2.796,
+          "bootstrap_ci_95_cm": [
+            -2.9299999999999997,
+            -2.654
+          ],
+          "cohens_d": -7.893732518794542
+        },
+        {
+          "measurement": "petal length",
+          "first_species": "Iris-setosa",
+          "second_species": "Iris-virginica",
+          "mean_difference_cm": -4.088000000000001,
+          "bootstrap_ci_95_cm": [
+            -4.247999999999999,
+            -3.9360000000000004
+          ],
+          "cohens_d": -9.993140671871128
+        },
+        {
+          "measurement": "petal length",
+          "first_species": "Iris-versicolor",
+          "second_species": "Iris-virginica",
+          "mean_difference_cm": -1.2920000000000007,
+          "bootstrap_ci_95_cm": [
+            -1.490000000000001,
+            -1.096000000000001
+          ],
+          "cohens_d": -2.520755888276997
+        },
+        {
+          "measurement": "petal width",
+          "first_species": "Iris-setosa",
+          "second_species": "Iris-versicolor",
+          "mean_difference_cm": -1.0819999999999999,
+          "bootstrap_ci_95_cm": [
+            -1.1440000000000001,
+            -1.02
+          ],
+          "cohens_d": -6.802475717658098
+        },
+        {
+          "measurement": "petal width",
+          "first_species": "Iris-setosa",
+          "second_species": "Iris-virginica",
+          "mean_difference_cm": -1.7820000000000003,
+          "bootstrap_ci_95_cm": [
+            -1.8600000000000003,
+            -1.7019999999999997
+          ],
+          "cohens_d": -8.547645934482231
+        },
+        {
+          "measurement": "petal width",
+          "first_species": "Iris-versicolor",
+          "second_species": "Iris-virginica",
+          "mean_difference_cm": -0.7000000000000004,
+          "bootstrap_ci_95_cm": [
+            -0.7900000000000003,
+            -0.6079999999999999
+          ],
+          "cohens_d": -2.9250734094820294
+        }
+      ],
+      "observed_range_overlaps": [
+        {
+          "measurement": "sepal length",
+          "first_species": "Iris-setosa",
+          "second_species": "Iris-versicolor",
+          "first_range_cm": [
+            4.3,
+            5.8
+          ],
+          "second_range_cm": [
+            4.9,
+            7.0
+          ],
+          "observed_ranges_overlap": true,
+          "overlap_width_cm": 0.8999999999999995
+        },
+        {
+          "measurement": "sepal length",
+          "first_species": "Iris-setosa",
+          "second_species": "Iris-virginica",
+          "first_range_cm": [
+            4.3,
+            5.8
+          ],
+          "second_range_cm": [
+            4.9,
+            7.9
+          ],
+          "observed_ranges_overlap": true,
+          "overlap_width_cm": 0.8999999999999995
+        },
+        {
+          "measurement": "sepal length",
+          "first_species": "Iris-versicolor",
+          "second_species": "Iris-virginica",
+          "first_range_cm": [
+            4.9,
+            7.0
+          ],
+          "second_range_cm": [
+            4.9,
+            7.9
+          ],
+          "observed_ranges_overlap": true,
+          "overlap_width_cm": 2.0999999999999996
+        },
+        {
+          "measurement": "sepal width",
+          "first_species": "Iris-setosa",
+          "second_species": "Iris-versicolor",
+          "first_range_cm": [
+            2.3,
+            4.4
+          ],
+          "second_range_cm": [
+            2.0,
+            3.4
+          ],
+          "observed_ranges_overlap": true,
+          "overlap_width_cm": 1.1
+        },
+        {
+          "measurement": "sepal width",
+          "first_species": "Iris-setosa",
+          "second_species": "Iris-virginica",
+          "first_range_cm": [
+            2.3,
+            4.4
+          ],
+          "second_range_cm": [
+            2.2,
+            3.8
+          ],
+          "observed_ranges_overlap": true,
+          "overlap_width_cm": 1.5
+        },
+        {
+          "measurement": "sepal width",
+          "first_species": "Iris-versicolor",
+          "second_species": "Iris-virginica",
+          "first_range_cm": [
+            2.0,
+            3.4
+          ],
+          "second_range_cm": [
+            2.2,
+            3.8
+          ],
+          "observed_ranges_overlap": true,
+          "overlap_width_cm": 1.1999999999999997
+        },
+        {
+          "measurement": "petal length",
+          "first_species": "Iris-setosa",
+          "second_species": "Iris-versicolor",
+          "first_range_cm": [
+            1.0,
+            1.9
+          ],
+          "second_range_cm": [
+            3.0,
+            5.1
+          ],
+          "observed_ranges_overlap": false,
+          "overlap_width_cm": 0.0
+        },
+        {
+          "measurement": "petal length",
+          "first_species": "Iris-setosa",
+          "second_species": "Iris-virginica",
+          "first_range_cm": [
+            1.0,
+            1.9
+          ],
+          "second_range_cm": [
+            4.5,
+            6.9
+          ],
+          "observed_ranges_overlap": false,
+          "overlap_width_cm": 0.0
+        },
+        {
+          "measurement": "petal length",
+          "first_species": "Iris-versicolor",
+          "second_species": "Iris-virginica",
+          "first_range_cm": [
+            3.0,
+            5.1
+          ],
+          "second_range_cm": [
+            4.5,
+            6.9
+          ],
+          "observed_ranges_overlap": true,
+          "overlap_width_cm": 0.5999999999999996
+        },
+        {
+          "measurement": "petal width",
+          "first_species": "Iris-setosa",
+          "second_species": "Iris-versicolor",
+          "first_range_cm": [
+            0.1,
+            0.6
+          ],
+          "second_range_cm": [
+            1.0,
+            1.8
+          ],
+          "observed_ranges_overlap": false,
+          "overlap_width_cm": 0.0
+        },
+        {
+          "measurement": "petal width",
+          "first_species": "Iris-setosa",
+          "second_species": "Iris-virginica",
+          "first_range_cm": [
+            0.1,
+            0.6
+          ],
+          "second_range_cm": [
+            1.4,
+            2.5
+          ],
+          "observed_ranges_overlap": false,
+          "overlap_width_cm": 0.0
+        },
+        {
+          "measurement": "petal width",
+          "first_species": "Iris-versicolor",
+          "second_species": "Iris-virginica",
+          "first_range_cm": [
+            1.0,
+            1.8
+          ],
+          "second_range_cm": [
+            1.4,
+            2.5
+          ],
+          "observed_ranges_overlap": true,
+          "overlap_width_cm": 0.40000000000000013
+        }
+      ],
+      "reference_comparison": {
+        "reference_summary_rows": 12,
+        "max_absolute_mean_difference_cm": 0.0,
+        "max_absolute_t_interval_endpoint_difference_cm": 0.0
+      },
+      "interpretation": {
+        "pairwise_intervals_are_pointwise": true,
+        "pairwise_interval_family_size": 12,
+        "inference_scope": "Descriptive for the observed sample; population generalization requires a defensible sampling design.",
+        "duplicate_row_caveat": "Exact duplicate rows are retained. Identical rounded measurements alone do not establish duplicate specimens."
+      }
+    },
+    "reference_comparison": {
+      "reference_summary_rows": 12,
+      "max_absolute_mean_difference_cm": 0.0,
+      "max_absolute_t_interval_endpoint_difference_cm": 0.0
+    },
+    "ai_output_verified": {
+      "saved_run_exit_code": 0,
+      "run_completed": true,
+      "summary_shape_reproduced": true,
+      "duplicate_count_reproduced": true,
+      "mean_summary_rows_reproduced": true,
+      "figure_saved": true
+    },
+    "interpretation": "The reported sample summaries and descriptive conclusions reproduce. Intervals are for means under independent-row assumptions, not for individual flowers or unspecified broader populations."
+  },
+  "generated_at_utc": "2026-10-16T12:08:02+00:00"
+}
