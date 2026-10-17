@@ -14,6 +14,17 @@ A model writes the analysis. This project checks whether the statistics hold up,
 | **Write the better analysis** | A corrected notebook per case: sound methodology, bootstrap and analytic intervals, sensitivity checks, and a short plain-language takeaway with a before-versus-after comparison. |
 | **Python, SQL, notebooks** | Python (pandas, NumPy, SciPy, statsmodels, scikit-learn), SQL on DuckDB, executed Jupyter notebooks, pytest, ruff, GitHub Actions CI, and a Docker sandbox for running model-written code. |
 | **Clear written English** | Every audit follows one structure: question, method review, assumption review, conclusion check, flaws with measured evidence, what the AI got right, verdict, and rubric scores. |
+
+
+## Start here (2 minutes)
+ 
+| If you want to see... | Open |
+|---|---|
+| One complete audit, end to end | [`cases/03_olist_delivery_reviews/`](cases/03_olist_delivery_reviews/) |
+| The rules I set before touching any model output | [`docs/AUDIT_PROTOCOL.md`](docs/AUDIT_PROTOCOL.md) |
+| How every number is traced to its source | [`docs/DATA_PROVENANCE.md`](docs/DATA_PROVENANCE.md) |
+
+ 
  
 ## How each audit works
  
